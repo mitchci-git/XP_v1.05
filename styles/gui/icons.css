@@ -1,0 +1,110 @@
+/* Desktop icons */
+.desktop-icons {
+    padding: 15px 0 0 15px;
+    display: grid;
+    grid-template-columns: 90px; 
+    grid-auto-rows: 90px;
+    grid-gap: 3px;
+    justify-content: start;
+    align-content: start;
+    width: auto;
+    height: calc(100% - 30px);
+}
+
+/* Individual desktop icon container */
+.desktop-icon {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    cursor: default;
+    padding: 4px;
+}
+
+/* Hover state for desktop icons */
+.desktop-icon:hover {
+    background-color: rgba(49, 106, 197, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    padding: 6px;
+}
+
+/* Disable hover effects during selection */
+.desktop.selecting .desktop-icon:hover:not(.hover-by-selection) {
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+}
+
+/* Selection hover style */
+.desktop.selecting .desktop-icon.hover-by-selection,
+.desktop-icon.hover-by-selection {
+    background-color: rgba(49, 106, 197, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 3px;
+    padding: 6px !important;
+}
+
+/* Icon image styling */
+.desktop-icon img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+/* Icon text styling */
+.desktop-icon span {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.9), 0 0 3px rgba(0,0,0,0.8);
+    font-size: 11.5px;
+    line-height: 14px;
+    letter-spacing: 0.5px;
+    font-family: "Tahoma", Arial, sans-serif;
+    font-weight: 450;
+    white-space: normal;
+    overflow: visible;
+    max-width: 100%;
+    display: block;
+}
+
+/* Selected icon state */
+.desktop-icon.selected {
+    background-color: rgba(49, 106, 197, 0.40);
+    border: 1px dotted rgba(255, 255, 255, 0.95);
+    border-radius: 3px;
+    padding: 6px;
+}
+
+/* Add hover effect for selected desktop icons */
+.desktop-icon.selected:hover {
+    background-color: rgba(49, 106, 197, 0.3);
+}
+
+/* Folder items (inside windows) */
+.folder-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.folder-item:hover {
+    background-color: #E5F1FB;
+}
+
+.folder-item img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 5px;
+}
+
+.folder-item span {
+    font-size: 11px;
+    max-width: 100%;
+}

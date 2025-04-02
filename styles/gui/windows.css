@@ -1,0 +1,669 @@
+.window {
+    border: 2px solid #0055EA;
+    border-top-width: 1px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.1s ease;
+    position: relative;
+    min-width: 300px;
+    min-height: 200px;
+    overflow: hidden;
+    max-width: calc(100vw - 10px);
+    max-height: calc(100vh - 40px);
+}
+
+.window.active {
+    border-color: #0055EA;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.window:not(.active) {
+    border-color: #7399CF;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.title-bar {
+    border-radius: 6px 6px 0 0;
+    margin: 0;
+    padding-bottom: 1px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-bar-left {
+    display: flex;
+    align-items: center;
+    padding-left: 3px;
+}
+
+.title-bar-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+}
+
+.title-bar-icon img {
+    width: 16px;
+    height: 16px;
+}
+
+.title-bar-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title-bar-controls button {
+    position: relative;
+    z-index: 5; /* Ensure buttons are above other elements */
+    min-width: 16px;
+    min-height: 16px;
+    width: 24px; /* Slightly larger clickable area */
+    height: 24px; /* Slightly larger clickable area */
+    margin-left: 1px; /* Add slight spacing between buttons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-bar-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+}
+
+.title-bar-controls button:active {
+    background-color: rgba(0, 0, 0, 0.1); /* Subtle press effect */
+}
+
+/* Disabled buttons should appear grayed out */
+.title-bar-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.window-body {
+    margin: 0;
+    padding: 15px;
+    border: none !important;
+    box-sizing: border-box;
+    background-color: #ECE9D8;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.window-content {
+    flex: 1;
+}
+
+/* Sidebar layout for windows like My Computer */
+.with-sidebar {
+    display: flex;
+    padding: 0;
+    flex: 1;
+    overflow: hidden;
+    margin: 2px;
+    box-sizing: border-box;
+    width: calc(100% - 4px);
+    border: none !important;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #ECE9D8;
+    border-right: 1px solid #ACA899;
+    padding: 10px;
+    overflow-y: auto;
+    min-width: 200px;
+    max-width: 200px;
+    box-sizing: border-box;
+}
+
+.sidebar-title {
+    color: #0A246A;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #ACA899;
+}
+
+.sidebar-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+}
+
+.sidebar-list li {
+    padding: 3px 0 3px 5px;
+    margin: 1px 0;
+}
+
+.sidebar-list a {
+    color: #0A246A;
+    text-decoration: none;
+}
+
+.sidebar-list a:hover {
+    text-decoration: underline;
+}
+
+/* Details box in sidebar */
+.details-box {
+    font-size: 11px;
+    padding: 5px 0;
+}
+
+.progress-container {
+    margin-top: 8px;
+}
+
+.progress-label {
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+
+.progress-bar {
+    height: 12px;
+    background-color: white;
+    border: 1px solid #ACA899;
+    border-radius: 1px;
+    margin: 2px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 35%;
+    background-color: #0078D7;
+}
+
+.progress-text {
+    font-size: 10px;
+    color: #444;
+}
+
+/* Main content area */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow: hidden;
+    max-width: calc(100% - 200px);
+    box-sizing: border-box;
+    border-left: 1px solid #ACA899;
+}
+
+.address-bar {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    padding: 2px 5px;
+    background: linear-gradient(to right, #FFFFFF, #ECE9D8);
+    border-bottom: 1px solid #ACA899;
+}
+
+.address-icon {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.address-text {
+    font-size: 12px;
+}
+
+.folder-view {
+    flex: 1;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Status bar for windows */
+.status-bar {
+    height: 22px;
+    flex-shrink: 0;
+    overflow: hidden;
+    margin-top: auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    background-color: #ECE9D8;
+    border-top: 1px solid #ACA899;
+    box-sizing: border-box;
+}
+
+.status-bar-field {
+    padding: 0 8px;
+    font-size: 11px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #ACA899;
+}
+
+.status-bar-field:last-child {
+    margin-left: auto;
+    border-right: none;
+}
+
+/* Form elements in windows */
+.field-row {
+    margin-bottom: 10px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.button-row button {
+    min-width: 75px;
+    margin-left: 5px;
+}
+
+/* Window state indicators */
+.window-inactive-mask {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 8px 8px 3px 3px;
+}
+
+.window:not(.active) .window-inactive-mask {
+    display: block;
+}
+
+/* Iframe handling */
+.iframe-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    background-color: transparent;
+    display: none;
+}
+
+/* Special handling for iframe-based applications */
+.special-messenger-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    background-color: transparent !important;
+    display: block !important;
+    position: relative !important;
+    border: none !important;
+}
+
+.special-messenger-container iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+}
+
+/* Window body with iframe content */
+.window-body.special-messenger-container {
+    overflow: hidden !important;
+    padding: 0 !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.window:has(.special-messenger-container) {
+    min-height: 453px;
+    overflow: hidden;
+}
+
+.window:has(.special-messenger-container) .status-bar {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .window {
+        min-width: 280px;
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 40px);
+        transform: none !important;
+    }
+    
+    .window-resize-handle {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .window-body {
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .window {
+        width: calc(100vw - 10px) !important;
+        left: 5px !important;
+        top: 5px !important;
+    }
+    
+    .window:not(.active) {
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    .sidebar {
+        width: 150px;
+        min-width: 150px;
+        max-width: 150px;
+    }
+    
+    .folder-view {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        grid-gap: 5px;
+    }
+}
+
+.window[data-program="image-viewer"] {
+    width: 840px !important;     /* Reduced from 960px */
+    height: 750px !important;    /* Height remains the same */
+    min-width: 840px !important; /* Reduced from 960px */
+    min-height: 750px !important;
+    max-height: calc(100vh - 60px) !important;
+    max-width: calc(100vw - 40px) !important;
+}
+
+/* Make sure the content scales properly */
+.window[data-program="image-viewer"] .window-body {
+    width: 100% !important;
+    height: calc(100% - 52px) !important; /* Title bar + status bar height */
+}
+
+/* Make sure the iframe scales properly */
+.window[data-program="image-viewer"] iframe {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Image viewer specific styles */
+.window[data-program="image-viewer"] {
+    width: 840px !important;
+    height: 750px !important;
+    min-width: 840px !important;
+    min-height: 750px !important;
+    max-height: calc(100vh - 60px) !important;
+    max-width: calc(100vw - 40px) !important;
+}
+
+/* Override styles when maximized to ensure full screen */
+.window.maximized[data-program="image-viewer"],
+.window[data-program="image-viewer"][data-maximized="true"] {
+    width: 100vw !important;
+    height: calc(100vh - 30px) !important;
+    min-width: 100vw !important;
+    min-height: calc(100vh - 30px) !important;
+    max-width: 100vw !important;
+    max-height: calc(100vh - 30px) !important;
+}
+
+/* Make sure the content scales properly */
+.window[data-program="image-viewer"] .window-body {
+    width: 100% !important;
+    height: calc(100% - 52px) !important; /* Title bar + status bar height */
+}
+
+/* Make sure the iframe scales properly */
+.window[data-program="image-viewer"] iframe {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Override any iframe hover behaviors */
+iframe {
+    pointer-events: auto !important;
+}
+
+/* Optimization for window dragging */
+.dragging-window {
+    will-change: transform;
+    cursor: move !important;
+}
+
+.dragging-window iframe {
+    pointer-events: none !important;
+    /* Optional: Slightly reduce opacity during drag for an optimization visual cue */
+    opacity: 0.92 !important;
+    /* Use optimized filtering during drag */
+    filter: saturate(98%) !important;
+    transition: none !important;
+}
+
+/* Ensure cursor is consistent during drag */
+.dragging-window * {
+    cursor: move !important;
+}
+
+/* Optimization for window dragging */
+.dragging-window {
+    will-change: transform;
+}
+
+.dragging-window iframe {
+    pointer-events: none;
+}
+
+/* Add special handling for My Pictures window */
+.window[data-program="my-pictures"] .window-body {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+.window[data-program="my-pictures"] .window-body iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+}
+
+/* Hide status bar completely for My Pictures window */
+.window[data-program="my-pictures"] .status-bar {
+    display: none !important;
+}
+
+/* My Pictures specific styling */
+.window[data-program="my-pictures"] .status-bar {
+    display: none !important; /* Hide status bar completely */
+}
+
+.window[data-program="my-pictures"] .window-body {
+    padding: 0 !important; /* Remove padding */
+}
+
+.window[data-program="my-pictures"] .thumbnail-item {
+    width: 100px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 5px;
+    position: relative;
+    border: 1px solid transparent;
+    user-select: none;
+}
+
+/* Add hover effect that matches selection effect */
+.window[data-program="my-pictures"] .thumbnail-item:hover:not(.selected) {
+    background-color: rgba(49, 106, 197, 0.1);
+    border: 1px solid rgba(49, 106, 197, 0.4);
+}
+
+.window[data-program="my-pictures"] .thumbnail-item.selected {
+    background-color: rgba(49, 106, 197, 0.2);
+    border: 1px solid rgba(49, 106, 197, 0.8);
+}
+
+/* Add hover effect on selected items */
+.window[data-program="my-pictures"] .thumbnail-item.selected:hover {
+    background-color: rgba(49, 106, 197, 0.3);
+}
+
+/* Base grid layout for My Pictures */
+.window[data-program="my-pictures"] .thumbnails-view {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    padding: 10px;
+    width: 100%; /* Ensure it takes full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Responsive grid for maximized window - use auto-fill to adapt to available width */
+.window.maximized[data-program="my-pictures"] .thumbnails-view,
+.window[data-program="my-pictures"][data-maximized="true"] .thumbnails-view {
+    display: grid !important; /* Use grid instead of flex */
+    grid-template-columns: repeat(auto-fill, 100px) !important; /* Auto-fill columns based on container width */
+    grid-gap: 15px !important; /* Slightly larger gap in maximized mode */
+    justify-content: start !important; /* Align items to start of container */
+    width: 100% !important;
+    padding: 15px !important;
+    overflow: auto !important; /* Enable scrolling if needed */
+}
+
+/* Remove fixed positioning on thumbnails in maximized window */
+.window.maximized[data-program="my-pictures"] .thumbnail-item,
+.window[data-program="my-pictures"][data-maximized="true"] .thumbnail-item {
+    /* Allow normal grid positioning */
+    margin: 0 !important;
+}
+
+.window[data-program="my-pictures"] .thumbnail-container {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+/* Make images completely fill their containers without distortion */
+.window[data-program="my-pictures"] .thumbnail-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Changed from fill to cover to prevent distortion */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* My Pictures specific styling - clean up duplicate rules */
+.window[data-program="my-pictures"] .window-body {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+.window[data-program="my-pictures"] .status-bar {
+    display: none !important;
+}
+
+/* Ensure content fills the entire window width */
+.window[data-program="my-pictures"] .content {
+    max-width: 100% !important;
+    flex: 1 !important;
+}
+
+/* Base thumbnail styling */
+.window[data-program="my-pictures"] .thumbnail-item {
+    width: 100px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 5px;
+    position: relative;
+    border: 1px solid transparent;
+    user-select: none;
+}
+
+/* Fix the thumbnails view to fill available width */
+.window[data-program="my-pictures"] .thumbnails-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-gap: 10px;
+    padding: 10px;
+    width: 100% !important;
+    box-sizing: border-box;
+    overflow: visible !important;
+}
+
+/* Ensure folder view container expands properly */
+.window[data-program="my-pictures"] .folder-view {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    overflow: auto !important;
+}
+
+/* Remove any conflicting maximized window styles that were added earlier */
+.window.maximized[data-program="my-pictures"] .thumbnails-view,
+.window[data-program="my-pictures"][data-maximized="true"] .thumbnails-view {
+    grid-template-columns: repeat(auto-fill, 100px) !important;
+}
+
+/* Make images completely fill their containers without distortion */
+.window[data-program="my-pictures"] .thumbnail-container {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.window[data-program="my-pictures"] .thumbnail-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}

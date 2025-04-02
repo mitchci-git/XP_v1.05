@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <title>Outlook Express</title>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css@0.2.3/dist/XP.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="email-window">
+        <div class="toolbar">
+            <div class="toolbar-buttons">
+                <button class="toolbar-button">
+                    <img src="../../assets/icons/windows/send.png" alt="Send">
+                    <span>Send</span>
+                </button>
+                <button class="toolbar-button">
+                    <img src="../../assets/icons/windows/cancel.png" alt="Cancel">
+                    <span>Cancel</span>
+                </button>
+                <div class="separator"></div>
+                <button class="toolbar-button">
+                    <img src="../../assets/icons/windows/attach.png" alt="Attach">
+                    <span>Attach</span>
+                </button>
+                <button class="toolbar-button">
+                    <img src="../../assets/icons/windows/priority.png" alt="Priority">
+                    <span>Priority</span>
+                </button>
+                <button class="toolbar-button">
+                    <img src="../../assets/icons/windows/spellcheck.png" alt="Spelling">
+                    <span>Spelling</span>
+                </button>
+                <button class="toolbar-button">
+                    <img src="../../assets/icons/windows/signature.png" alt="Sign">
+                    <span>Sign</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="email-body">
+            <div class="email-header">
+                <div class="field">
+                    <label for="to">To:</label>
+                    <input type="text" id="to" value="mitch@design-studio.com" readonly>
+                </div>
+                <div class="field">
+                    <label for="cc">Cc:</label>
+                    <input type="text" id="cc">
+                </div>
+                <div class="field">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" placeholder="Enter subject here">
+                </div>
+                <div class="field sender">
+                    <label for="from">From:</label>
+                    <input type="text" id="from" placeholder="Your email address">
+                </div>
+                <div class="field sender">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Your name">
+                </div>
+            </div>
+
+            <div class="email-content">
+                <div class="formatting-toolbar">
+                    <select class="format-dropdown">
+                        <option>Arial</option>
+                        <option>Times New Roman</option>
+                        <option>Courier New</option>
+                        <option>Verdana</option>
+                    </select>
+                    <select class="format-dropdown">
+                        <option>10</option>
+                        <option>12</option>
+                        <option selected>14</option>
+                        <option>16</option>
+                        <option>18</option>
+                    </select>
+                    <button class="format-button bold">B</button>
+                    <button class="format-button italic">I</button>
+                    <button class="format-button underline">U</button>
+                    <div class="separator-small"></div>
+                    <button class="format-button">
+                        <img src="../../assets/icons/windows/text-left.png" alt="Left">
+                    </button>
+                    <button class="format-button">
+                        <img src="../../assets/icons/windows/text-center.png" alt="Center">
+                    </button>
+                    <button class="format-button">
+                        <img src="../../assets/icons/windows/text-right.png" alt="Right">
+                    </button>
+                </div>
+
+                <textarea id="message-body" placeholder="Write your message here. Please include details about your project, timeline, and budget if you are inquiring about graphic design services."></textarea>
+
+                <div id="contact-info" class="contact-info">
+                    <h3>Contact Mitch - Graphic Designer</h3>
+                    <p>Thank you for your interest in my graphic design services!</p>
+                    <p>I specialize in brand identity, logo design, print media, and digital graphics with a focus on sports-related projects.</p>
+                    <p>Please include the following information in your message:</p>
+                    <ul>
+                        <li>Project type and description</li>
+                        <li>Timeline expectations</li>
+                        <li>Budget range (if applicable)</li>
+                        <li>Best way to contact you</li>
+                    </ul>
+                    <p>I'll typically respond within 1-2 business days.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-text">Ready to send</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <title>My Computer</title>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css@0.2.3/dist/XP.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="window-content with-sidebar">
+        <div class="sidebar">
+            <div class="sidebar-title">System Tasks</div>
+            <ul class="sidebar-list">
+                <li><a href="#">View system information</a></li>
+                <li><a href="#">Add or remove programs</a></li>
+                <li><a href="#">Change a setting</a></li>
+            </ul>
+            
+            <div class="sidebar-title">Other Places</div>
+            <ul class="sidebar-list">
+                <li><a href="#">My Network Places</a></li>
+                <li><a href="#">My Documents</a></li>
+                <li><a href="#">Control Panel</a></li>
+                <li><a href="#">Shared Documents</a></li>
+            </ul>
+            
+            <div class="sidebar-title">Details</div>
+            <div class="details-box">
+                <p>System: Windows XP Professional</p>
+                <p>Version: 2002</p>
+                <div class="progress-container">
+                    <div class="progress-label">Disk space:</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">34.5 GB free of 120 GB</div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="address-bar">
+                <div class="address-icon">🖴</div>
+                <div class="address-text">My Computer</div>
+            </div>
+            <div class="folder-view">
+                <div class="folder-item">
+                    <img src="../../assets/icons/windows/drive-c.png" alt="Drive C">
+                    <span>Local Disk (C:)</span>
+                </div>
+                <div class="folder-item">
+                    <img src="../../assets/icons/windows/drive-d.png" alt="Drive D">
+                    <span>CD Drive (D:)</span>
+                </div>
+                <div class="folder-item">
+                    <img src="../../assets/icons/windows/control-panel.png" alt="Control Panel">
+                    <span>Control Panel</span>
+                </div>
+                <div class="folder-item">
+                    <img src="../../assets/icons/windows/network.png" alt="Network">
+                    <span>Network Connections</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

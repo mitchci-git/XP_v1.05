@@ -1,0 +1,367 @@
+/* Prevent selection of all elements */
+*, *::before, *::after {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+img{
+  width:20px;
+  height: 20px;
+}
+
+.music-player {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 697px;
+  height: 372px;
+  border-radius: 43px;
+  border: 2px solid #1A1A1A;
+  background: linear-gradient(380deg, #1a1a1a 0%, #3C3C3C 100%);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.texture{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/9/9a/512x512_Dissolve_Noise_Texture.png);
+  background-clip: border-box;
+  mix-blend-mode: multiply;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.mp-inner{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 98%;
+  height: 96%;
+  border-radius: 37px;
+  background: linear-gradient(180deg, #1b1b1b 0%, #212121 11.2%, #3A3A3A 100%);
+}
+
+
+.album-artwork{
+  position: relative;
+  z-index: 2;
+  width: 345px;
+  height: 313px;
+  border-radius: 28px;
+  border: 4px solid #1E1E1E;
+  background-size: 100%;
+  transition: background-image 0.2s ease-in-out; 
+
+}
+
+
+.album-border{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  filter: blur(1.0px);
+}
+
+.album-reflection{
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  opacity: 0.4;
+  transform: translateX(128px) skewX(-30deg);
+  filter: blur(2.4px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%);
+}
+
+.albmu-scrn-fx{
+  position: absolute;
+  display:flex;
+  gap: 2px;
+  border-radius: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+
+.scrn-fx-line{
+  width:4px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(2, 2, 2, 0.10) 0%, rgba(2, 2, 2, 0.00) 100%);
+filter: blur(0.5px);
+}
+
+.album-text{
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(2, 2, 2, 0.0) 0%, rgba(2, 2, 2, 0.95) 100%);
+  bottom: 0;
+  filter: blur(0.6px);
+  opacity: 0.95;
+  border-radius: 0px 0px 24px 24px;
+}
+
+.album-text h1 {
+  font-size: 28px;
+  margin: 4px 20px;
+  margin-top: 24px;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7);
+  font-weight: 600;
+}
+
+.album-text p {
+  font-size: 20px;
+  margin: 0px 20px;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+.button-controls{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 254px;
+  height: 254px;
+  margin-right: 10px;
+  background: linear-gradient(180deg, #292929 0%, #1F1F1F 100%);
+  border: 4px solid #0D0D0D;
+  border-radius: 50%;
+  perspective: 120em;
+}
+
+.btn-overlay{
+  position: relative;
+  width: 236px;
+  height: 236px;
+  border-radius: 50%;
+  background: linear-gradient(175deg, #1F1F1F 3.94%, #2D2D2D 44.59%, #3D3D3D 81.99%);
+  box-shadow: 0px 4px 7px 1px rgba(255, 255, 255, 0.11) inset;
+  transition: transform 0.1s ease;
+}
+
+.btn-overlay.left{
+    transform: rotateY(-6deg) skew(1deg, -1deg) ;
+     box-shadow: 0px 4px 7px 1px rgba(255, 255, 255, 0.11) inset, 16px 4px 14px 0px rgba(0, 0, 0, 0.05) inset;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.btn-overlay.right{
+    transform: rotateY(6deg) skew(-1deg, 1deg) ;
+    box-shadow: 0px 4px 7px 1px rgba(255, 255, 255, 0.11) inset, -16px 4px 14px 0px rgba(0, 0, 0, 0.05) inset;
+    filter: drop-shadow(0px 4px -4px rgba(0, 0, 0, 0.25));
+}
+
+.btn-overlay.up{
+    transform: rotateX(8deg);
+   box-shadow: 0px 4px 7px 1px rgba(255, 255, 255, 0.09) inset, 0px -4px 14px 0px rgba(0, 0, 0, 0.05) inset;
+    filter: drop-shadow(0px 4px -4px rgba(0, 0, 0, 0.25));
+}
+
+.btn-overlay.down{
+    transform: rotateX(-8deg);
+  box-shadow: 0px 4px 7px 1px rgba(255, 255, 255, 0.1) inset, 0px -14px 14px 0px rgba(0, 0, 0, 0.05) inset;
+    filter: drop-shadow(0px 4px -4px rgba(0, 0, 0, 0.25));
+}
+
+.play-btn-shadow{
+  position: absolute;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background: rgba(0, 0, 0, 0.70);
+  filter: blur(1.5px);
+}
+
+.play-btn{
+  cursor: pointer;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transform:  translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background: linear-gradient(180deg, #292929 0%, #1F1F1F 100%);
+  transition: transform 0.1s ease;
+}
+
+
+
+.play-btn.pressed{
+  
+  transform: translate(-50%, -50%) scale(0.96);
+  transition: transform 0.1s ease;
+  
+}
+
+.play-btn-overlay{
+  
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(189deg, #1F1F1F 6.91%, #2D2D2D 50.27%, #393939 83.66%);
+  box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.12) inset;
+}
+
+.play-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+
+.skip-left{
+  cursor: pointer;
+  position: absolute;
+  top: 52%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+.skip-right{
+  cursor: pointer;
+  position: absolute;
+  top: 52%;
+  right: -2%;
+  transform: translate(-50%, -50%);
+}
+
+.vol-up{
+  cursor: pointer;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vol-down{
+  cursor: pointer;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close-btn {
+  position: absolute;
+  top: 22px;
+  right: 25px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+  box-shadow: 
+    inset 1px 1px 3px rgba(255, 255, 255, 0.15),
+    inset -1px -1px 3px rgba(0, 0, 0, 0.3),
+    2px 2px 4px rgba(0, 0, 0, 0.2);
+  opacity: 0.95;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.05);
+  opacity: 1;
+  background: radial-gradient(circle at center, #ff3030, #991111);
+  box-shadow: 
+    inset 1px 1px 4px rgba(255, 150, 150, 0.5),
+    inset -1px -1px 4px rgba(100, 0, 0, 0.4),
+    0 0 10px rgba(255, 0, 0, 0.7),
+    0 0 20px rgba(255, 0, 0, 0.4);
+  animation: pulsate 1.5s infinite alternate;
+}
+
+.close-btn:active {
+  transform: scale(0.95);
+  background: radial-gradient(circle at center, #cc0000, #800000);
+  box-shadow: 
+    inset 2px 2px 5px rgba(0, 0, 0, 0.6),
+    inset -1px -1px 3px rgba(255, 100, 100, 0.3),
+    0 0 8px rgba(255, 0, 0, 0.6);
+  animation: none;
+}
+
+@keyframes pulsate {
+  from {
+    box-shadow: 
+      inset 1px 1px 4px rgba(255, 150, 150, 0.5),
+      inset -1px -1px 4px rgba(100, 0, 0, 0.4),
+      0 0 10px rgba(255, 0, 0, 0.7),
+      0 0 15px rgba(255, 0, 0, 0.4);
+  }
+  to {
+    box-shadow: 
+      inset 1px 1px 4px rgba(255, 150, 150, 0.5),
+      inset -1px -1px 4px rgba(100, 0, 0, 0.4),
+      0 0 15px rgba(255, 0, 0, 0.8),
+      0 0 25px rgba(255, 0, 0, 0.5);
+  }
+}
+
+/* Custom tooltip styling for music player */
+.music-player-tooltip {
+  position: absolute;
+  background: linear-gradient(145deg, #1a1a1a, #292929);
+  color: #aaaaaa;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 0 3px rgba(255, 255, 255, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}

@@ -1,0 +1,52 @@
+/* Desktop styles */
+:root {
+    --desktop-selection-color: rgba(49, 106, 197, 0.15);
+    --desktop-selection-hover: rgba(49, 106, 197, 0.25);
+    --taskbar-height: 30px;
+    --selection-border: 1px dotted #FFFFFF;
+    --icon-hover-bg: rgba(49, 106, 197, 0.12);
+    --icon-hover-border: rgba(255, 255, 255, 0.3);
+}
+
+/* Main desktop container */
+.desktop {
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/backgrounds/bliss.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Selection overlay for capturing mouse events */
+.selection-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - var(--taskbar-height));
+    z-index: 0;
+    cursor: default;
+}
+
+/* Selection box styling */
+#selection-box {
+    position: absolute;
+    border: var(--selection-border);
+    background-color: var(--desktop-selection-color);
+    border-radius: 3px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Selection hover state styling */
+.desktop-icon.hover-by-selection {
+    background-color: var(--desktop-selection-hover);
+    border: var(--selection-border);
+    border-radius: 3px;
+}
+
+/* Add hover effect for selected desktop icons */
+.desktop-icon.selected:hover {
+    background-color: rgba(49, 106, 197, 0.3);
+}

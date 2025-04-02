@@ -1,0 +1,718 @@
+/**
+ * Common styles for iframe-based applications
+ * Ensures consistent rendering across different application windows
+ */
+
+/* Common settings for all application containers */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Generic styling for all iframe application containers */
+.window-body .mainwindow {
+    height: 100%;
+    width: 100%;
+    min-width: 420px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ECF6F9;
+    font-family: "Tahoma", sans-serif;
+    font-size: 8pt;
+}
+
+.window-body a {
+    color: #0088e4;
+}
+
+/* Windows Messenger specific styles */
+.window-body .aerobutton {
+    background-color: transparent;
+    border: 2px solid transparent;
+}
+
+.window-body .aerobutton:hover {
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/aerobutton_border.png") 2 round;
+}
+
+.window-body .aerobutton:active {
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/aerobutton_border_down.png") 2 round;
+}
+
+.window-body .smallarrowbtn {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    align-items: center;
+}
+
+.window-body .arrowdown {
+    height: 5px;
+    margin-left: 4px;
+}
+
+.window-body .alerts {
+    display: flex;
+    align-items: center;
+    height: 19px;
+    background-color: white;
+    border: thin solid #bed6e0;
+    border-bottom: none;
+}
+
+.window-body .alerttext {
+    margin: 0;
+    margin-left: 3px; 
+}
+
+.window-body .tabs {
+    height: 27px;
+    padding: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.window-body .tabbutton {
+    height: 23px;
+    width: 100%;
+    min-width: 100px;
+    margin: 0 2px;
+    padding: 0 5px;
+    border: thin solid #B8BDBD;
+    border-radius: 6px 6px 0 0;
+    background-color: #EFF9F9;
+    display: flex;
+    flex-direction: row;
+}
+
+.window-body .tabbutton > .name {
+    margin-top: 4px;
+    text-anchor: middle;
+    font-size: 8pt;
+}
+
+.window-body .status-icon {
+    height: 100%;
+    box-sizing: content-box;
+}
+
+.window-body #chat > .header {
+    border-top: thin solid #707070;
+    image-rendering: pixelated;
+    background-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/background/chat_header.png");
+    background-size: 100% 100%;
+    margin: 0;
+    height: 77px;
+    padding: 7px;
+    box-shadow: 0px 1px 4px #00000057;
+}
+
+.window-body #info {
+    display: flex;
+}
+
+.window-body #chaticon {
+    height: 16px;
+}
+
+.window-body #text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+.window-body #text > #name {
+    font-weight: bold;
+    color: #333333;
+}
+
+.window-body #text > #message {
+    color: #6F8A92;
+    margin: 0;
+}
+            
+.window-body #navbars {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3px;
+    justify-content: space-between;
+}
+
+.window-body .chatnav {
+    list-style: none;
+    margin: 0;
+    height: 33px;
+    padding: 0;
+}
+
+.window-body .chataction {
+    height: 100%;
+    width: 33px;
+    margin-left: 5px;
+}
+
+.window-body .chatnav > #left {
+    width: 100%;
+    min-width: 230px;
+}
+
+.window-body .chatnav > #right {
+    width: 10%;
+    min-width: 84px;
+}
+
+.window-body .chatnav#left > .chataction {
+    float: left;
+}
+
+.window-body .chatnav#right > .chataction {
+    float: right;
+}
+
+.window-body #chatnav-expand {
+    padding: 0 3px;
+    width: 40px;
+}
+
+.window-body .conversation {
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    padding-right: 0;
+    padding-bottom: 15px;
+}
+
+.window-body #messages {
+    width: 100%;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.window-body .chattext {
+    font-family: "Tahoma", sans-serif;
+    width: 100%;
+    resize: none;
+    border: thin solid #BED6E0;
+}
+
+.window-body #recieve {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.window-body #display {
+    margin: 0;
+    height: 100%;
+}
+
+.window-body #handle {
+    background-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/30417.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 10px;
+}
+
+.window-body #send {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+}
+
+.window-body #options {
+    background-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/background/chat_editheader.png");
+    border: thin solid #bed6e0;
+    height: 29px;
+    margin: 0;
+    padding: 2px;
+}
+
+.window-body .textoption {
+    height: 24px;
+    width: auto;
+    padding: 0 4px;
+    float: left;
+}
+
+.window-body .noarrow {
+    width: 32px;
+}
+
+.window-body #write {
+    height: 100%;
+    margin: 0;
+    border-top: none;
+    font-size: 10pt;
+    padding: 4px 8px;
+}
+
+.window-body #bottomtabs {
+    display: flex;
+    justify-content: space-between;
+    height: 24px;
+    margin: 0;
+    position: relative;
+}
+
+.window-body .editortab {
+    width: 26px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: thin solid #bed6e0;
+    border-top: none;
+    background-color: white;
+}
+
+.window-body .selected {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 25px;
+    border-top: 2px solid white;
+}
+
+.window-body .unselected {
+    margin-left: 25px;
+    border-left: none;
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/editortab.png");
+    image-rendering: pixelated;
+}
+
+.window-body .unselected:hover {
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/editortab_down.png");
+    background-size: 100% auto;
+    image-rendering: pixelated;
+}
+
+.window-body #sendbutton {
+    height: 21px;
+    padding: 0 18px;
+    margin: 2px;
+    font-size: 8pt;
+    color: #001563;
+    background-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/button_inside.png");
+    background-size: 100% auto;
+    border: 3px solid transparent;
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/button_border.png") 3;
+}
+
+.window-body #sendbutton:hover {
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/button_border_focus.png") 3;
+}
+
+.window-body #sendbutton:active {
+    padding: 0 20px;
+    filter: brightness(93%);
+    border: thin solid #286088;
+    border-radius: 3px;
+    box-shadow: inset 1px 1px 2px #00000077;
+}
+
+.window-body #sendbutton:disabled {
+    background-image: none;
+    background-color: #f0f0f0;
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/button_border_disabled.png") 3;
+    color: #c9c1c1;
+}
+
+.window-body #search {
+    float: right;
+    width: 23px;
+    height: 21px;
+    margin: 2px;
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/653_multi.png") 0 0;
+    border: none;
+}
+
+.window-body #search:hover {
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/653_multi.png") -23px 0;
+}
+
+.window-body #search:active {
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/653_multi.png") -46px 0;
+}
+
+.window-body #search:disabled {
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/653_multi.png") -69px 0;
+}
+
+.window-body #avatars {
+    height: 100%;
+    position: relative;
+    width: 114px;
+}
+
+.window-body #topavatar {
+    position: relative;
+    width: 114px;
+}
+
+.window-body #bottomavatar {
+    position: absolute;
+    bottom: 0;
+    width: 114px;
+}
+
+.window-body .avatar {
+    margin: 9px;
+    height: 96px;
+    width: 96px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.window-body .frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 114px;
+    height: 114px;
+}
+
+.window-body .avatarnav {
+    height: 18px;
+    width: 114px;
+}
+
+.window-body .avataraction {
+    height: 100%;
+}
+
+.window-body #expand {
+    margin-left: 18px;
+}
+
+.window-body .expandbutton {
+    background: url(https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/1450_multi.png) 0 0;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 0;
+    width: 12px;
+    height: 31px;
+}
+
+.window-body .expandbutton:hover {
+    background: url(https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/1450_multi.png) 26px 0;
+}
+
+.window-body .expandbutton:active {
+    background: url(https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/1450_multi.png) 13px 0;
+}
+
+/* Ensure main container fills the window body - keep this part */
+.special-iframe-container .window-body {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* Add the correct selector for Messenger container */
+.window-body.special-messenger-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  display: block !important;
+  position: relative !important;
+  border: none !important;
+}
+
+/* Add a custom shadow that doesn't affect layout */
+.window-body.special-messenger-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  pointer-events: none;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+/* Common styles for all iframe containers */
+.special-iframe-container,
+.special-messenger-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  border: none !important;
+  position: relative !important;
+}
+
+/* Specific styles for messenger container */
+.special-messenger-container {
+  display: block !important;
+}
+
+/* Ensure iframes fill their containers */
+.special-iframe-container iframe,
+.special-messenger-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Add a custom shadow that doesn't affect layout */
+.special-iframe-container::after,
+.special-messenger-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  pointer-events: none;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+/* Style for iframe overlay used during window drag operations */
+.iframe-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  background-color: transparent;
+  display: none;
+  cursor: default;
+}
+
+/* Fix for layout shift issue */
+html, body {
+  height: 100% !important;
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Prevent iframe scroll from affecting parent */
+iframe {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin;
+}
+
+/* Make sure iframe links don't cause layout shifts */
+iframe a {
+  scroll-behavior: auto;
+}
+
+/* Fixed positioning for desktop to prevent shifting */
+.desktop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Specific iframe styling might be overriding dimensions */
+.window[data-program="image-viewer"] iframe {
+    /* There might be max dimensions set here */
+}
+
+/* Ensure Messenger window has exact dimensions for perfect scaling */
+.window[data-program="messenger"] iframe {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+/* Specific override styles for music player iframe */
+.window[data-program="music-player"] .window-body,
+.window[data-program="music-player"] iframe,
+.window[data-program="music-player"] .special-iframe-container {
+  width: 697px !important;
+  height: 372px !important;
+  min-width: 697px !important;
+  min-height: 372px !important;
+  max-width: 697px !important;
+  max-height: 372px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  overflow: hidden !important;
+  border-radius: 43px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* Completely remove scrollbars in all browsers for music player */
+.window[data-program="music-player"] iframe {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+.window[data-program="music-player"] iframe::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0px !important;
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Adjust content dimensions inside iframe for music player */
+.window[data-program="music-player"] iframe html,
+.window[data-program="music-player"] iframe body {
+  width: 697px !important;
+  height: 372px !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Override any default body styles that could cause overflow */
+.window[data-program="music-player"] iframe body {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Fix for Firefox shadow DOM hidden scrollbar issue */
+@-moz-document url-prefix() {
+  .window[data-program="music-player"] {
+    scrollbar-width: none !important;
+  }
+  
+  .window[data-program="music-player"] iframe {
+    scrollbar-width: none !important;
+  }
+  
+  .window[data-program="music-player"] * {
+    scrollbar-width: none !important;
+  }
+}
+
+/* Specific override for any internal content styling */
+.window[data-program="music-player"] iframe .content {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  background: transparent !important;
+}
+
+/* Fix for layout shift issue */
+.window[data-program="music-player"] {
+  height: 372px !important;
+  width: 697px !important;
+  box-sizing: border-box !important;
+  position: absolute !important;
+  background: none !important;
+  background-color: transparent !important;
+}
+
+/* Specific override styles for music player iframe - scaled to 50% */
+.window[data-program="music-player"] .window-body,
+.window[data-program="music-player"] .special-iframe-container {
+  width: 348px !important; /* 50% of 697px */
+  height: 186px !important; /* 50% of 372px */
+  min-width: 348px !important;
+  min-height: 186px !important;
+  max-width: 348px !important;
+  max-height: 186px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  overflow: hidden !important;
+  border-radius: 21px !important; /* 50% of 43px */
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* Special handling for the iframe inside the music player to scale content */
+.window[data-program="music-player"] iframe {
+  transform: scale(0.5) !important;
+  transform-origin: top left !important;
+  width: 200% !important; /* Double width to maintain aspect ratio after scaling */
+  height: 200% !important; /* Double height to maintain aspect ratio after scaling */
+  position: absolute !important;
+  overflow: hidden !important; 
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  
+  /* Fix the content width and height to exactly match the player dimensions */
+  box-sizing: border-box !important;
+}
+
+/* Ensure the iframe HTML content has proper dimensions */
+.window[data-program="music-player"] iframe html,
+.window[data-program="music-player"] iframe body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Add a scroll adjustment to the content container inside the iframe */
+.window[data-program="music-player"] iframe .content {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Fix the music player element dimensions */
+.window[data-program="music-player"] iframe .music-player {
+  width: 697px !important;
+  height: 372px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Fix for layout shift issue */
+.window[data-program="music-player"] {
+  height: 186px !important; /* 50% of 372px */
+  width: 348px !important; /* 50% of 697px */
+  box-sizing: border-box !important;
+  position: absolute !important;
+  background: none !important;
+  background-color: transparent !important;
+}

@@ -1,0 +1,92 @@
+/* Custom styles for the music player window with 50% scaling */
+.window[data-program="music-player"] {
+  /* Scale down to 50% of original size (697px × 372px) */
+  width: 348px !important;
+  height: 186px !important;
+  min-width: 348px !important;
+  min-height: 186px !important;
+  max-width: 348px !important;
+  max-height: 186px !important;
+  resize: none !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border-radius: 21px !important; /* 50% of original 43px */
+  border-width: 0 !important;
+  border-color: transparent !important;
+  outline: none !important;
+  background-color: transparent !important;
+}
+
+/* Hide window decorations for music player */
+.window[data-program="music-player"] .title-bar,
+.window[data-program="music-player"] .status-bar,
+.window[data-program="music-player"] .window-inactive-mask {
+  display: none !important;
+}
+
+/* Make sure the iframe content fits perfectly */
+.window[data-program="music-player"] .window-body,
+.window[data-program="music-player"] .special-iframe-container,
+.window[data-program="music-player"] iframe {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 21px !important; /* 50% of original */
+  box-sizing: border-box !important;
+  outline: none !important;
+  border-width: 0 !important;
+}
+
+/* Reset window body styling that might interfere */
+.window[data-program="music-player"] .window-body {
+  background-color: transparent !important;
+  display: block !important;
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Disable scrollbars in the music player window */
+.window[data-program="music-player"] iframe {
+  overflow: hidden !important;
+  scrollbar-width: none !important;
+  background: transparent !important;
+  border: 0 none !important;
+  outline: 0 none !important;
+}
+
+/* Hide scrollbars in WebKit browsers */
+.window[data-program="music-player"] iframe::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Add subtle shadow for the player only */
+.window[data-program="music-player"] {
+  filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.5)) !important; /* Smaller shadow for smaller player */
+}
+
+/* Fix for blue border that might be coming from the window chrome */
+.window[data-program="music-player"] {
+  border: 0 none transparent !important;
+  outline: 0 none transparent !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+/* Explicitly override any remaining window chrome */
+.window.frameless-window[data-program="music-player"] {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 21px !important;
+  overflow: hidden !important;
+}

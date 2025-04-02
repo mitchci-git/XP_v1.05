@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Photo Viewer</title>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css@0.2.3/dist/XP.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="image-viewer-container" onselectstart="return false" oncontextmenu="return false">
+    <div class="toolbar">
+        <div class="toolbar-group left-group">
+            <button class="toolbar-button" id="prev-button" data-tooltip="Previous Image">
+                <img src="../../assets/icons/windows/prev.png" alt="Previous" draggable="false">
+            </button>
+            <button class="toolbar-button" id="next-button" data-tooltip="Next Image">
+                <img src="../../assets/icons/windows/next.png" alt="Next" draggable="false">
+            </button>
+        </div>
+        
+        <div class="toolbar-group right-group">
+            <button class="toolbar-button" id="zoom-in-button" data-tooltip="Zoom In">
+                <img src="../../assets/icons/windows/zoom-in.png" alt="Zoom In" draggable="false">
+            </button>
+            <button class="toolbar-button" id="zoom-out-button" data-tooltip="Zoom Out">
+                <img src="../../assets/icons/windows/zoom-out.png" alt="Zoom Out" draggable="false">
+            </button>
+            <button class="toolbar-button" id="rotate-button" data-tooltip="Rotate">
+                <img src="../../assets/icons/windows/rotate.png" alt="Rotate" draggable="false">
+            </button>
+        </div>
+    </div>
+    
+    <div class="image-container" id="image-container">
+        <!-- Set image to be invisible by default with empty source -->
+        <img id="image-display" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+             alt="Image" style="visibility: hidden; opacity: 0;" draggable="false">
+    </div>
+    
+    <div class="status-bar">
+        <div id="image-info">Image name and details</div>
+        <div id="zoom-level">100%</div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+/* Modern CSS Reset with Windows XP specific adjustments */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Document */
+html {
+    font-size: 100%;
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Tahoma", Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #000;
+}
+
+/* Windows XP specific user interaction settings */
+.desktop, .desktop * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+/* Remove list styles */
+ul, ol {
+    list-style: none;
+}
+
+/* Images */
+img, svg {
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Form elements */
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Links */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Improves performance */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

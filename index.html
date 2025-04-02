@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <title>Windows XP Simulation</title>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css@0.2.3/dist/XP.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/main.css">
+    <style>
+        /* Ensure tooltips stay below CRT effects */
+        [data-tooltip]::after {
+            z-index: 1000;
+        }
+        /* CRT effects need higher z-index than tooltips */
+        .crt, .crt-glow, .crt-vignette, .crt-noise, .crt-scanline, .crt-aberration, .crt-flicker, .crt-persistence {
+            z-index: 2000;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon">
+                <img src="./assets/icons/desktop/internet-explorer.png" alt="Internet Explorer">
+                <span>Internet Explorer</span>
+            </div>
+            <div class="desktop-icon">
+                <img src="./assets/icons/desktop/messenger.png" alt="Windows Messenger">
+                <span>Windows Messenger</span>
+            </div>
+            <div class="desktop-icon">
+                <img src="./assets/icons/desktop/my-documents.png" alt="My Documents">
+                <span>My Documents</span>
+            </div>
+            <div class="desktop-icon">
+                <img src="./assets/icons/desktop/my-pictures.png" alt="My Pictures">
+                <span>My Pictures</span>
+            </div>
+            <div class="desktop-icon">
+                <img src="./assets/icons/desktop/email.png" alt="Email">
+                <span>Email</span>
+            </div>
+        </div>
+
+        <div id="windows-container"></div>
+        
+        <!-- Start Menu -->
+        <div id="start-menu" class="start-menu hidden">
+            <!-- Start menu content will go here -->
+        </div>
+
+        <!-- Taskbar -->
+        <div class="taskbar">
+            <div class="start-button" id="start-button">
+                <img src="./assets/taskbar/start-button.png" alt="Start">
+            </div>
+            <div class="quick-launch"></div>
+            <div class="taskbar-programs"></div>
+            <div class="system-tray">
+                <img src="./assets/taskbar/system-tray.png" alt="System Tray" class="system-tray-bg">
+                <div class="tray-content">
+                    <div class="tray-icons">
+                        <img src="./assets/taskbar/status.png" alt="Status Icon" class="tray-status-icon" data-tooltip="Status: Ready to Work">
+                        <img src="./assets/taskbar/network.png" alt="Network Icon" class="tray-network-icon" data-tooltip="Connected: 100 Mbps">
+                        <img src="./assets/taskbar/volume.png" alt="Volume Icon" class="tray-volume-icon" data-tooltip="Volume: 75%">
+                    </div>
+                    <div class="time">12:00 PM</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRT effect layers -->
+    <div class="crt"></div>
+    <div class="crt-glow"></div>
+    <div class="crt-vignette"></div>
+    <div class="crt-noise"></div>
+    <div class="crt-scanline"></div>
+    <div class="crt-aberration"></div>
+    <div class="crt-flicker"></div>
+    <div class="crt-persistence"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>

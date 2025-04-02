@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Tahoma", Arial, sans-serif;
+    font-size: 11px;
+}
+
+.window-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 200px;
+    background-color: #ECF4FD;
+    padding: 15px 5px 15px 15px;
+    border-right: 1px solid #D5E4F1;
+}
+
+.sidebar-title {
+    font-weight: bold;
+    color: #003399;
+    padding: 5px 0;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.sidebar-list {
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.sidebar-list li {
+    padding: 4px 0;
+}
+
+.sidebar-list a {
+    color: #0066CC;
+    text-decoration: none;
+    padding-left: 18px;
+    background: url('../../assets/icons/windows/folder.png') no-repeat left center;
+    display: block;
+}
+
+.sidebar-list a:hover {
+    color: #3399FF;
+    text-decoration: underline;
+}
+
+.details-box {
+    padding: 5px;
+    font-size: 11px;
+    color: #444;
+}
+
+.progress-container {
+    margin-top: 5px;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #ddd;
+    margin: 2px 0;
+    border: 1px solid #999;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 30%;
+    background-color: #0078d7;
+}
+
+.progress-text {
+    font-size: 10px;
+}
+
+/* Content styling */
+.content {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.address-bar {
+    height: 25px;
+    border: 1px solid #7A9EB1;
+    background: linear-gradient(to bottom, #FDFEFF 0%, #ECF3F7 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    margin-bottom: 10px;
+}
+
+.address-icon {
+    margin-right: 5px;
+}
+
+.folder-view {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 5px;
+    overflow-y: auto;
+}
+
+.folder-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    width: 80px;
+    margin: 5px;
+}
+
+.folder-item:hover {
+    background-color: #E5F1FB;
+}
+
+.folder-item img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 5px;
+}
+
+.folder-item span {
+    font-size: 11px;
+    max-width: 100%;
+}

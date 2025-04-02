@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Tahoma", Arial, sans-serif;
+    font-size: 11px;
+}
+
+.window-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 160px !important;
+    min-width: 160px !important;
+    max-width: 160px !important;
+    background-color: #ECF4FD;
+    padding: 15px 5px 15px 15px;
+    border-right: 1px solid #D5E4F1;
+}
+
+.sidebar-title {
+    font-weight: bold;
+    color: #003399;
+    padding: 5px 0;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.sidebar-list {
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.sidebar-list li {
+    padding: 4px 0;
+}
+
+.sidebar-list a {
+    color: #0066CC;
+    text-decoration: none;
+    padding-left: 18px;
+    background: url('../../assets/icons/windows/folder.png') no-repeat left center;
+    display: block;
+}
+
+.sidebar-list a:hover {
+    color: #3399FF;
+    text-decoration: underline;
+}
+
+/* Content styling */
+.content {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100% - 160px) !important;
+}
+
+.address-bar {
+    height: 25px;
+    border: 1px solid #7A9EB1;
+    background: linear-gradient(to bottom, #FDFEFF 0%, #ECF3F7 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    margin-bottom: 10px;
+}
+
+.address-icon {
+    margin-right: 5px;
+}
+
+.folder-view {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 5px;
+    overflow-y: auto;
+}
+
+.empty-folder {
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.folder-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    width: 80px;
+    margin: 5px;
+}
+
+.folder-item:hover {
+    background-color: #E5F1FB;
+}
+
+.folder-item img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 5px;
+}
+
+.folder-item span {
+    font-size: 11px;
+    max-width: 100%;
+}
+
+/* Main folder styles are in iframe-apps.css, these are additional styles for thumbnails */
+
+.thumbnails-view {
+    display: grid !important;
+    grid-template-columns: repeat(3, 100px) !important;
+    grid-gap: 10px !important;
+    width: 100% !important;
+    padding: 10px !important;
+}
+
+/* Remove the fade-in animation that's causing issues */
+/* @keyframes fade-in { ... } */
+
+.thumbnail-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100px !important;
+    cursor: default; /* Change from pointer/auto to explicitly use default cursor */
+    padding: 5px !important;
+    border: 1px solid transparent !important;
+    position: relative !important;
+    user-select: none;
+    margin: 0 !important;
+    flex: 0 0 auto;
+}
+
+/* Match hover effect with desktop icons */
+.thumbnail-item:hover:not(.selected) {
+    background-color: rgba(49, 106, 197, 0.1);
+    border: 1px solid rgba(49, 106, 197, 0.4);
+}
+
+/* Match selection style with desktop icons */
+.thumbnail-item.selected {
+    background-color: rgba(49, 106, 197, 0.2);
+    border: 1px solid rgba(49, 106, 197, 0.8);
+}
+
+.thumbnail-item.selected:hover {
+    background-color: rgba(49, 106, 197, 0.3);
+}
+
+/* Remove filename highlight styling */
+
+/* Focus outline for accessibility */
+.thumbnail-item:focus {
+    outline: 1px dotted #000;
+}
+
+/* Remove selection box related styles */
+
+.thumbnail-container {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 4px;
+    background-color: #f0f0f0; /* Matches empty placeholder color */
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    overflow: hidden;
+}
+
+/* Fix blank thumbnails by removing all opacity transitions */
+.thumbnail-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none;
+}
+
+.filename {
+    font-size: 11px;
+    text-align: center;
+    word-wrap: break-word;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

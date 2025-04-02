@@ -1,0 +1,161 @@
+@import 'reset.css';
+@import 'gui/desktop.css';
+@import 'gui/icons.css';
+@import 'gui/windows.css';
+@import 'gui/taskbar.css';
+@import 'gui/startmenu.css';
+@import 'gui/iframe-apps.css';
+@import 'effects/crt-effect.css';
+
+/* Window states */
+.window.maximized {
+  position: absolute;
+  border-radius: 0;
+  border-width: 0;
+  overflow: hidden;
+}
+
+/* Messenger window dimensions */
+.window[data-program="messenger"] {
+  width: 550px;
+  height: 453px;
+  min-width: 550px;
+  min-height: 453px;
+}
+
+/* Maximized state overrides */
+.window.maximized[data-program="messenger"] {
+  width: 100% !important;
+  height: calc(100vh - 30px) !important;
+  max-width: none !important;
+  min-width: 0 !important;
+}
+
+.window.maximized .title-bar {
+  border-radius: 0;
+}
+
+.window-maximize.restore {
+  background-image: url('../assets/icons/windows/restore.png');
+  background-size: 10px 10px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .window[data-program="messenger"] {
+    min-width: 280px !important;
+    max-width: calc(100vw - 20px) !important;
+    width: calc(100vw - 20px) !important;
+    height: auto !important;
+  }
+  
+  .taskbar {
+    overflow-x: auto;
+  }
+  
+  .taskbar-item {
+    min-width: 120px;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .taskbar-item {
+    min-width: 100px;
+  }
+  
+  .system-tray {
+    width: 120px;
+  }
+}
+
+/* Tooltip styling */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffcc;
+  color: #000;
+  border: 1px solid #999;
+  padding: 4px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+  z-index: 1000; /* Ensure tooltips appear below CRT effects */
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* New unified tooltip styling for taskbar and applications */
+.taskbar-tooltip, .viewer-tooltip {
+  position: absolute;
+  background-color: #FFFECF;
+  border: 1px solid #7F7F7F;
+  padding: 4px 8px;
+  font-family: "Tahoma", Arial, sans-serif;
+  font-size: 11px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  z-index: 1000; /* Keep below CRT effects */
+  pointer-events: none;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Remove any existing tooltip styles that might conflict */
+.system-tooltip {
+  display: none !important;
+}
+
+/* CRT effect z-index values */
+.crt, .crt-glow, .crt-vignette, .crt-noise, .crt-scanline, .crt-aberration, .crt-flicker, .crt-persistence {
+  z-index: 20000; /* Much higher than tooltips */
+  pointer-events: none; /* Allow clicking through the CRT effects */
+}
+
+/* Start menu styling */
+.start-menu {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  z-index: 1500; /* Above regular content, below CRT effects */
+}
+
+/* Media Player Close Button */
+.media-player-window .window-header .close-button {
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background-color: #c13535;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #9c1c1c;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.media-player-window .window-header .close-button:hover {
+    background-color: #e04343;
+}
+
+.hidden {
+  display: none;
+}

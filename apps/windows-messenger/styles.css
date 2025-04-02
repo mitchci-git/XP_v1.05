@@ -1,0 +1,461 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    height: 100%;
+    font-family: "Tahoma", sans-serif;
+    font-size: 8pt;
+    margin: 0;
+    padding: 0;
+    background-color: #F0F0F0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+a {
+    color: #0088e4;
+}
+
+.main {
+    display: flex;
+    height: 100vh;
+    min-height: 306px;
+    width: 100%; /* Use full width for responsive layout */
+    min-width: 550px; /* Ensure min-width is still 550px */
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.mainwindow {
+    background-color: #ECF6F9;
+    border: none; /* Remove border completely */
+    border-radius: 0; /* Remove border radius completely to match parent window's inner shape */
+    box-shadow: none; /* Remove shadow that could create visual spacing */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.aerobutton {
+    background-color: transparent;
+    border: 2px solid transparent;
+}
+.aerobutton:hover {
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/aerobutton_border.png") 2 round;
+}
+.aerobutton:active {
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/aerobutton_border_down.png") 2 round;
+}
+
+.smallarrowbtn {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    align-items: center;
+}
+.arrowdown {
+    height: 5px;
+    margin-left: 4px;
+}
+
+.alerts {
+    display: flex;
+    align-items: center;
+    height: 19px;
+    background-color: white;
+    border: thin solid #bed6e0;
+    border-bottom: none;
+}
+.alerttext {
+    margin: 0;
+    margin-left: 3px; 
+}
+
+#chat {
+    height: 100%;
+    width: 100%;
+    min-width: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs {
+    height: 27px;
+    padding: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.tabbutton {
+    height: 23px;
+    width: 100%;
+    min-width: 100px;
+    margin: 0 2px;
+    padding: 0 5px;
+    border: thin solid #B8BDBD;
+    border-radius: 6px 6px 0 0;
+    background-color: #EFF9F9;
+    display: flex;
+    flex-direction: row;
+}
+
+.tabbutton > .name {
+    margin-top: 4px;
+    text-anchor: middle;
+    font-size: 8pt;
+}
+
+.status-icon {
+    height: 100%;
+    box-sizing: content-box;
+}
+
+#chat > .header {
+    border-top: thin solid #707070;
+    image-rendering: pixelated;
+    background-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/background/chat_header.png");
+    background-size: 100% 100%;
+    margin: 0;
+    height: 77px;
+    padding: 7px;
+    box-shadow: 0px 1px 4px #00000057;
+}
+
+#info {
+    display: flex;
+}
+
+#chaticon {
+    height: 16px;
+}
+
+#text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+#text > #name {
+    font-weight: bold;
+    color: #333333;
+}
+
+#text > #message {
+    color: #6F8A92;
+    margin: 0;
+}
+            
+#navbars {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3px;
+    justify-content: space-between;
+}
+
+.chatnav {
+    list-style: none;
+    margin: 0;
+    height: 33px;
+    padding: 0;
+}
+
+.chataction {
+    height: 100%;
+    width: 33px;
+    margin-left: 5px;
+}
+
+.chatnav > #left {
+    width: 100%;
+    min-width: 230px;
+}
+
+.chatnav > #right {
+    width: 10%;
+    min-width: 84px;
+}
+
+.chatnav#left > .chataction {
+    float: left;
+}
+
+.chatnav#right > .chataction {
+    float: right;
+}
+
+#chatnav-expand {
+    padding: 0 3px;
+    width: 40px;
+}
+
+.conversation {
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    padding-right: 0;
+    padding-bottom: 15px;
+    position: relative; /* Add positioning context */
+}
+
+.conversation::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    pointer-events: none;
+    box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+#messages {
+    width: 100%;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chattext {
+    font-family: "Tahoma", sans-serif;
+    width: 100%;
+    resize: none;
+    border: thin solid #BED6E0;
+}
+
+#recieve {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#display {
+    margin: 0;
+    height: 100%;
+}
+
+#handle {
+    background-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/30417.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 10px;
+}
+
+#send {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+}
+
+#options {
+    background-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/background/chat_editheader.png");
+    border: thin solid #bed6e0;
+    height: 29px;
+    margin: 0;
+    padding: 2px;
+}
+
+.textoption {
+    height: 24px;
+    width: auto;
+    padding: 0 4px;
+    float: left;
+}
+
+.noarrow {
+    width: 32px;
+}
+
+#write {
+    height: 100%;
+    margin: 0;
+    border-top: none;
+    font-size: 10pt;
+    padding: 4px 8px;
+}
+
+#bottomtabs {
+    display: flex;
+    justify-content: space-between;
+    height: 24px;
+    margin: 0;
+    position: relative;
+}
+
+.editortab {
+    width: 26px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: thin solid #bed6e0;
+    border-top: none;
+    background-color: white;
+}
+
+.selected {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 25px;
+    border-top: 2px solid white;
+}
+
+.unselected {
+    margin-left: 25px;
+    border-left: none;
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/editortab.png");
+    image-rendering: pixelated;
+}
+
+.unselected:hover {
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/editortab_down.png");
+    background-size: 100% auto;
+    image-rendering: pixelated;
+}
+
+#sendbutton {
+    height: 21px;
+    padding: 0 18px;
+    margin: 2px;
+    font-size: 8pt;
+    color: #001563;
+    background-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/button_inside.png");
+    background-size: 100% auto;
+    border: 3px solid transparent;
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/button_border.png") 3;
+}
+
+#sendbutton:hover {
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/button_border_focus.png") 3;
+}
+
+#sendbutton:active {
+    padding: 0 20px;
+    filter: brightness(93%);
+    border: thin solid #286088;
+    border-radius: 3px;
+    box-shadow: inset 1px 1px 2px #00000077;
+}
+
+#sendbutton:disabled {
+    background-image: none;
+    background-color: #f0f0f0;
+    border-image: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/button_border_disabled.png") 3;
+    color: #c9c1c1;
+}
+
+#search {
+    float: right;
+    width: 23px;
+    height: 21px;
+    margin: 2px;
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/653_multi.png") 0 0;
+    border: none;
+}
+
+#search:hover {
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/653_multi.png") -23px 0;
+}
+
+#search:active {
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/653_multi.png") -46px 0;
+}
+
+#search:disabled {
+    background: url("https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/653_multi.png") -69px 0;
+}
+
+#avatars {
+    height: 100%;
+    position: relative;
+    width: 114px;
+}
+
+#topavatar {
+    position: relative;
+    width: 114px;
+}
+
+#bottomavatar {
+    position: absolute;
+    bottom: 0;
+    width: 114px;
+}
+
+.avatar {
+    margin: 9px;
+    margin-left: 8px; /* 1px less margin on left side to stretch image leftward */
+    height: 92px;
+    width: 93px;  /* Increase width by 1px to account for the leftward shift */
+    border-radius: 2px;
+    object-fit: cover;
+    position: relative;
+    left: 0.95px; 
+    top: -0.15px;
+}
+
+.frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 114px;
+    height: 114px;
+}
+
+.avatarnav {
+    height: 18px;
+    width: 114px;
+}
+
+.avataraction {
+    height: 100%;
+}
+
+#expand {
+    margin-left: 18px;
+}
+
+.expandbutton {
+    background: url(https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/1450_multi.png) 0 0;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 0;
+    width: 12px;
+    height: 31px;
+}
+
+.expandbutton:hover {
+    background: url(https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/1450_multi.png) 26px 0;
+}
+
+.expandbutton:active {
+    background: url(https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/1450_multi.png) 13px 0;
+}

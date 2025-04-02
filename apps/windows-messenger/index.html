@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <title>Chat Window - Windows Live Messenger</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main">
+    <div class="mainwindow" id="chat">
+        <!-- Removed tabs div that contained "Available" status -->
+        <div class="header">
+            <div id="info">
+                <img id="chaticon" src="https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/61.ico">
+            </div>
+            <div id="navbars">
+                <ul class="chatnav" id="left">
+                </ul>
+                <ul class="chatnav" id="right">
+                </ul>
+            </div>
+        </div>
+        <div class="conversation">
+            <div id="messages">
+                <textarea class="chattext" id="display" readonly></textarea>
+                <div id="send">
+                    <ul id="options">
+                    </ul>
+                    <textarea class="chattext" id="write" placeholder="Type your message here..."></textarea>
+                    <div id="bottomtabs">
+                        <button id="sendbutton" disabled>Send</button>
+                        <button id="search" disabled></button>
+                    </div>
+                </div>
+            </div>
+            <div id="avatars">
+            </div>
+            <div id="expand">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>

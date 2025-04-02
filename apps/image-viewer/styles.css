@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default; /* Prevent flashing cursor on all elements by default */
+    user-select: none; /* Prevent text selection */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    -webkit-touch-callout: none; /* iOS Safari */
+}
+
+/* Prevent text highlight color */
+::selection {
+    background: transparent;
+    color: inherit;
+}
+::-moz-selection {
+    background: transparent;
+    color: inherit;
+}
+
+body.image-viewer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: "Tahoma", Arial, sans-serif;
+    font-size: 11px;
+    overflow: hidden;
+}
+
+/* Fixed toolbar with consistent dimensions */
+.toolbar {
+    display: flex;
+    background-color: #ECE9D8;
+    border-bottom: 1px solid #ACA899;
+    padding: 4px 8px;
+    height: 42px; /* Fixed height */
+    width: 100%;
+    justify-content: space-between; /* Use space-between to push groups to edges */
+    align-items: center;
+    flex-shrink: 0; /* Prevent toolbar from shrinking */
+    min-height: 42px; /* Ensure minimum height */
+}
+
+/* Toolbar groups with fixed dimensions */
+.toolbar-group {
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    height: 100%; /* Fill toolbar height */
+}
+
+/* Left group styling */
+.toolbar-group.left-group {
+    justify-content: flex-start;
+}
+
+/* Right group styling */
+.toolbar-group.right-group {
+    justify-content: flex-end;
+}
+
+/* Fixed dimensions for toolbar buttons */
+.toolbar-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ECE9D8;
+    border: 1px solid #ACA899;
+    border-radius: 3px;
+    padding: 4px 8px;
+    margin: 0 3px;
+    cursor: pointer; /* Ensure cursor is pointer for buttons */
+    height: 36px;
+    width: auto;
+    min-width: 36px;
+    pointer-events: auto; /* Allow button clicks while preventing selection */
+    -webkit-user-drag: none; /* Prevent button dragging */
+}
+
+.toolbar-button:hover {
+    border-color: #FFD080;
+    background-color: #FFEFC1;
+}
+
+.toolbar-button:active {
+    border-color: #E0A040;
+    background-color: #FFC060;
+}
+
+.toolbar-button img {
+    width: 20px;
+    height: 20px;
+    filter: contrast(1.2) brightness(0.8);
+    cursor: pointer; /* Keep pointer cursor on button images */
+    -webkit-user-drag: none; /* Prevent image dragging */
+    pointer-events: none; /* Make image part of button click target */
+}
+
+/* Remove span styling */
+.toolbar-button span {
+    display: none;
+}
+
+/* Media query updates */
+@media (max-width: 450px) {
+    /* Only keep essential adjustments */
+    .toolbar-group {
+        padding: 0 2px;
+    }
+    
+    /* No size changes for buttons */
+    .toolbar-button {
+        /* Keep standard sizing */
+        margin: 0 1px;
+    }
+}
+
+.image-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7B7B7B;
+    overflow: hidden; /* Changed from 'auto' to 'hidden' to disable scrollbars completely */
+    position: relative;
+    cursor: default; /* Ensure default cursor in image container */
+    -webkit-user-drag: none; /* Prevent dragging */
+}
+
+/* Initial state for image display to avoid broken icon */
+#image-display {
+    visibility: hidden;
+    opacity: 0;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    transform-origin: center center; /* Ensure rotation happens from center */
+    will-change: transform, opacity; /* Optimize for animation performance */
+    cursor: default; /* Ensure default cursor on images */
+    -webkit-user-drag: none; /* Prevent image dragging */
+    pointer-events: none; /* Prevent image selection/highlighting */
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ECE9D8;
+    border-top: 1px solid #ACA899;
+    padding: 4px 8px;
+    height: 22px;
+    cursor: default; /* Ensure default cursor in status bar */
+}
+
+#image-info, #zoom-level {
+    font-size: 11px;
+    color: #000000;
+    -webkit-user-drag: none; /* Prevent dragging */
+    pointer-events: none; /* Prevent selection */
+}
+
+/* Add error message styling */
+.image-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.image-error h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.image-error p {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+/* Error message styling */
+.error-message {
+    display: none; /* Hide error message completely */
+    visibility: hidden; /* Extra measure to ensure it's hidden */
+    opacity: 0; /* Make fully transparent */
+    position: absolute;
+    top: -9999px; /* Position far off-screen */
+    left: -9999px;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+.error-message h3,
+.error-message p,
+.error-message .path {
+    display: none; /* Hide all child elements too */
+}
+
+/* Remove loading indicator styles that are no longer needed */
+#loading-indicator {
+    display: none; /* Hide completely */
+}
+
+.loading-spinner {
+    display: none; /* Hide completely */
+}
+
+.loading-text {
+    display: none; /* Hide completely */
+}
+
+/* Keep the spin animation for other potential uses */
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Windows XP Tooltip styling - copied from taskbar.css */
+.viewer-tooltip {
+    position: absolute;
+    background-color: #FFFECF;
+    border: 1px solid #7F7F7F;
+    padding: 4px 8px;
+    font-family: "Tahoma", Arial, sans-serif;
+    font-size: 11px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    z-index: 9999;
+    pointer-events: none;
+    border-radius: 4px;
+}
