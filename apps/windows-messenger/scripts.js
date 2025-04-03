@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const messageSpan = document.createElement('span');
     messageSpan.id = 'message';
-    messageSpan.textContent = 'Personal Assistant <mitchellivin@gmail.com>';
+    messageSpan.textContent = 'Personal Assistant <mitch@gmail.com>';
     
     textDiv.appendChild(nameSpan);
     textDiv.appendChild(messageSpan);
@@ -38,26 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Right nav buttons
-    const expandBtn = document.createElement('button');
-    expandBtn.className = 'aerobutton chataction smallarrowbtn';
-    expandBtn.id = 'chatnav-expand';
-    
-    const expandImg = document.createElement('img');
-    expandImg.src = 'https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/1489.png';
-    expandImg.style.height = '16px';
-    
-    const arrowImg = document.createElement('img');
-    arrowImg.className = 'arrowdown';
-    arrowImg.src = 'https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/general/small_arrow.svg';
-    
-    expandBtn.appendChild(expandImg);
-    expandBtn.appendChild(arrowImg);
-    rightNav.appendChild(expandBtn);
-    
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'aerobutton chataction';
-    closeBtn.style.background = 'url(https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/chat-window/329.png) no-repeat center';
-    rightNav.appendChild(closeBtn);
+    // Note: Removed expandBtn and closeBtn as they have no event listeners or functionality
     
     // Add receive div without alert
     const messagesDiv = document.getElementById('messages');
@@ -257,10 +238,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to display a bot message with better formatting
     function displayBotMessage(message, hasHtml = false) {
         const messagesContainer = document.getElementById('messages-container');
-        if (!messagesContainer) {
-            console.error('Messages container not found');
-            return;
-        }
         
         const timestamp = new Date().toLocaleTimeString();
         
@@ -355,10 +332,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const message = writeArea.value.trim();
         if (message) {
             const messagesContainer = document.getElementById('messages-container');
-            if (!messagesContainer) {
-                console.error('Messages container not found');
-                return;
-            }
             
             const timestamp = new Date().toLocaleTimeString();
             

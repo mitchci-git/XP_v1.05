@@ -417,37 +417,10 @@
   border: none !important;
 }
 
-/* Add the correct selector for Messenger container */
-.window-body.special-messenger-container {
-  padding: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-color: transparent !important;
-  display: block !important;
-  position: relative !important;
-  border: none !important;
-}
-
-/* Add a custom shadow that doesn't affect layout */
-.window-body.special-messenger-container::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  pointer-events: none;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
-  z-index: 100;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
-
 /* Common styles for all iframe containers */
 .special-iframe-container,
-.special-messenger-container {
+.special-messenger-container,
+.window-body.special-messenger-container {
   padding: 0 !important;
   margin: 0 !important;
   overflow: hidden !important;
@@ -481,7 +454,8 @@
 
 /* Add a custom shadow that doesn't affect layout */
 .special-iframe-container::after,
-.special-messenger-container::after {
+.special-messenger-container::after,
+.window-body.special-messenger-container::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -542,106 +516,6 @@ iframe a {
   overflow: hidden !important;
 }
 
-/* Specific iframe styling might be overriding dimensions */
-.window[data-program="image-viewer"] iframe {
-    /* There might be max dimensions set here */
-}
-
-/* Ensure Messenger window has exact dimensions for perfect scaling */
-.window[data-program="messenger"] iframe {
-    width: 100% !important;
-    height: 100% !important;
-    overflow: hidden !important;
-}
-
-/* Specific override styles for music player iframe */
-.window[data-program="music-player"] .window-body,
-.window[data-program="music-player"] iframe,
-.window[data-program="music-player"] .special-iframe-container {
-  width: 697px !important;
-  height: 372px !important;
-  min-width: 697px !important;
-  min-height: 372px !important;
-  max-width: 697px !important;
-  max-height: 372px !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  border: none !important;
-  border-width: 0 !important;
-  outline: none !important;
-  overflow: hidden !important;
-  border-radius: 43px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block !important;
-}
-
-/* Completely remove scrollbars in all browsers for music player */
-.window[data-program="music-player"] iframe {
-  -ms-overflow-style: none !important; /* IE and Edge */
-  scrollbar-width: none !important; /* Firefox */
-}
-
-.window[data-program="music-player"] iframe::-webkit-scrollbar {
-  width: 0px !important;
-  height: 0px !important;
-  display: none !important;
-  background: transparent !important;
-}
-
-/* Adjust content dimensions inside iframe for music player */
-.window[data-program="music-player"] iframe html,
-.window[data-program="music-player"] iframe body {
-  width: 697px !important;
-  height: 372px !important;
-  overflow: hidden !important;
-  background: transparent !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Override any default body styles that could cause overflow */
-.window[data-program="music-player"] iframe body {
-  position: fixed !important;
-  left: 0 !important;
-  top: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-}
-
-/* Fix for Firefox shadow DOM hidden scrollbar issue */
-@-moz-document url-prefix() {
-  .window[data-program="music-player"] {
-    scrollbar-width: none !important;
-  }
-  
-  .window[data-program="music-player"] iframe {
-    scrollbar-width: none !important;
-  }
-  
-  .window[data-program="music-player"] * {
-    scrollbar-width: none !important;
-  }
-}
-
-/* Specific override for any internal content styling */
-.window[data-program="music-player"] iframe .content {
-  width: 100% !important;
-  height: 100% !important;
-  overflow: hidden !important;
-  background: transparent !important;
-}
-
-/* Fix for layout shift issue */
-.window[data-program="music-player"] {
-  height: 372px !important;
-  width: 697px !important;
-  box-sizing: border-box !important;
-  position: absolute !important;
-  background: none !important;
-  background-color: transparent !important;
-}
-
 /* Specific override styles for music player iframe - scaled to 50% */
 .window[data-program="music-player"] .window-body,
 .window[data-program="music-player"] .special-iframe-container {
@@ -673,9 +547,20 @@ iframe a {
   overflow: hidden !important; 
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;
-  
-  /* Fix the content width and height to exactly match the player dimensions */
   box-sizing: border-box !important;
+}
+
+/* Completely remove scrollbars in all browsers for music player */
+.window[data-program="music-player"] iframe {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+.window[data-program="music-player"] iframe::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0px !important;
+  display: none !important;
+  background: transparent !important;
 }
 
 /* Ensure the iframe HTML content has proper dimensions */
@@ -715,4 +600,19 @@ iframe a {
   position: absolute !important;
   background: none !important;
   background-color: transparent !important;
+}
+
+/* Fix for Firefox shadow DOM hidden scrollbar issue */
+@-moz-document url-prefix() {
+  .window[data-program="music-player"] {
+    scrollbar-width: none !important;
+  }
+  
+  .window[data-program="music-player"] iframe {
+    scrollbar-width: none !important;
+  }
+  
+  .window[data-program="music-player"] * {
+    scrollbar-width: none !important;
+  }
 }

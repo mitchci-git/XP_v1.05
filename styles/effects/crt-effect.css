@@ -1,34 +1,19 @@
 :root {
-  --crt-background: rgb(15, 20, 25);
   --crt-glow-color: rgba(30, 150, 220, 0.1);
   --crt-scanline-opacity: 0.15;
   --crt-scanline-width: 1px;
   --crt-scanline-gap: 1px;
   --crt-moving-scanline-color: rgba(255, 255, 255, 0.08);
   --crt-flicker-opacity: 0.01;
-  --crt-text-color: rgba(120, 255, 120, 0.7);
   --crt-curvature: 5px;
   --crt-vignette-opacity: 0;
   --crt-aberration-offset: 1.2px;
   --crt-aberration-opacity: 0.06;
-  --header-glow-color: rgba(120, 255, 150, 0.4);
 }
 
 @keyframes scanline { 
   0% { transform: translateY(-100%); } 
   100% { transform: translateY(100vh); } 
-}
-
-@keyframes flicker { 
-  0% { opacity: 0; }
-  5% { opacity: var(--crt-flicker-opacity); }
-  10% { opacity: 0; }
-  15% { opacity: var(--crt-flicker-opacity); }
-  20%, 30%, 50% { opacity: 0; }
-  70% { opacity: var(--crt-flicker-opacity); }
-  80% { opacity: 0; }
-  90% { opacity: var(--crt-flicker-opacity); }
-  100% { opacity: 0; }
 }
 
 @keyframes noise {
@@ -56,7 +41,7 @@
   75% { transform: translate(calc(var(--crt-aberration-offset) * 1.1), calc(var(--crt-aberration-offset) * -0.1)); }
 }
 
-.crt, .crt-effect {
+.crt {
   position: fixed;
   top: 0;
   left: 0;
@@ -69,7 +54,7 @@
   box-shadow: 0 0 10px rgba(30, 100, 200, 0.1);
 }
 
-.crt::before, .crt-effect::before {
+.crt::before {
   content: "";
   display: block;
   position: fixed;
@@ -88,7 +73,7 @@
   z-index: 9999;
 }
 
-.crt::after, .crt-effect::after {
+.crt::after {
   content: "";
   display: block;
   position: fixed;
@@ -212,34 +197,19 @@
   animation: chromatic-shift 3s ease-in-out infinite;
 }
 
-.crt-persistence {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(150, 255, 150, 0.01);
-  pointer-events: none;
-  z-index: 19995; /* Higher than tooltips */
-  mix-blend-mode: screen;
-}
-
 body {
-  animation: crt-flicker 10s infinite;
   transform-origin: center center;
   filter: brightness(1.05) contrast(1.05) saturate(1.05);
 }
 
 @media (max-width: 768px) {
   .crt, 
-  .crt-effect, 
   .crt-glow,
   .crt-vignette,
   .crt-noise,
   .crt-scanline,
   .crt-aberration,
-  .crt-flicker,
-  .crt-persistence {
+  .crt-flicker {
     display: none !important;
   }
   

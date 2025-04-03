@@ -73,40 +73,10 @@ const programData = {
             bottom: 20  // Equal spacing from bottom (taskbar will be added in calculation)
         }
     },
-    "paint": {
-        id: "paint-window",
-        title: "Paint",
-        icon: "./assets/start-menu/paint.png",
-        template: "folder-view",
-        dimensions: {
-            width: 600,
-            height: 400
-        }
-    },
     "my-pictures": {
         id: "my-pictures-window",
         title: "My Pictures",
         icon: "./assets/icons/desktop/my-pictures.png",
-        template: "folder-view",
-        dimensions: {
-            width: 600,
-            height: 400
-        }
-    },
-    "calculator": {
-        id: "calculator-window",
-        title: "Calculator",
-        icon: "./assets/icons/windows/calculator.png",
-        template: "folder-view",
-        dimensions: {
-            width: 250,
-            height: 300
-        }
-    },
-    "wordpad": {
-        id: "wordpad-window",
-        title: "WordPad",
-        icon: "./assets/icons/windows/wordpad.png",
         template: "folder-view",
         dimensions: {
             width: 600,
@@ -118,12 +88,7 @@ const programData = {
         title: "Windows Photo Viewer",
         icon: "./assets/icons/windows/image-viewer.png",
         template: "image-viewer",
-        dimensions: {
-            width: 1920, // This setting is being overridden
-            height: 1200
-        },
-        centerWindow: true,
-        resizeToContent: false 
+        centerWindow: true
     },
     "music-player": {
         id: "music-player-window",

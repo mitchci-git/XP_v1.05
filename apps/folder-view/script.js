@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleElement = document.getElementById('folder-title');
     const sidebarContainer = document.getElementById('sidebar-container');
     const folderContent = document.getElementById('folder-content');
+    const folderType = document.getElementById('folder-type');
     
     // Ensure these elements exist before proceeding
     if (!titleElement || !sidebarContainer || !folderContent) {
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Set folder title
     titleElement.textContent = folderTitle;
+    if (folderType) folderType.textContent = folderTitle;
     
     // Generate sidebar and content HTML based on folder type
     const { sidebarHTML, contentHTML } = generateFolderContent(folderTitle);
@@ -32,8 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Send message to parent window
             window.parent.postMessage({
                 type: 'sidebar-link-clicked',
-                text: link.textContent,
-                folder: folderTitle
+                text: link.textContent.trim(),
+                folder: folderTitle,
+                action: link.getAttribute('data-action') || 'navigate'
             }, '*');
         });
     });
@@ -55,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Improve event delegation for better performance
     document.addEventListener('mousedown', (e) => {
         const thumbnail = e.target.closest('.thumbnail-item');
-        if (!thumbnail) {
+        if (!thumbnail && e.target.closest('#folder-content')) {
             clearSelection();
         }
     });
@@ -69,17 +72,22 @@ function generateFolderContent(folderType) {
         sidebarHTML = `
             <div class="sidebar-title">Mail</div>
             <ul class="sidebar-list">
-                <li><a href="#">Inbox</a></li>
-                <li><a href="#">Outbox</a></li>
-                <li><a href="#">Sent Items</a></li>
-                <li><a href="#">Deleted Items</a></li>
-                <li><a href="#">Drafts</a></li>
+                <li><a href="#" data-action="inbox">
+                    <img src="../../assets/icons/windows/mail.png" alt="Inbox"> Inbox
+                </a></li>
+                <li><a href="#" data-action="outbox">
+                    <img src="../../assets/icons/windows/outbox.png" alt="Outbox"> Outbox
+                </a></li>
+                <li><a href="#" data-action="sent">
+                    <img src="../../assets/icons/windows/sent.png" alt="Sent"> Sent Items
+                </a></li>
             </ul>
             
             <div class="sidebar-title">Other</div>
             <ul class="sidebar-list">
-                <li><a href="#">Contacts</a></li>
-                <li><a href="#">Calendar</a></li>
+                <li><a href="#" data-action="contacts">
+                    <img src="../../assets/icons/windows/contacts.png" alt="Contacts"> Contacts
+                </a></li>
             </ul>
         `;
         
@@ -88,22 +96,38 @@ function generateFolderContent(folderType) {
         sidebarHTML = `
             <div class="sidebar-title">Picture Tasks</div>
             <ul class="sidebar-list">
-                <li><a href="#">View as a slide show</a></li>
-                <li><a href="#">Order prints online</a></li>
-                <li><a href="#">Print pictures</a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/slideshow.png" alt="Slideshow"> View as a slide show
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/print.png" alt="Prints"> Order prints online
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/printer.png" alt="Print"> Print pictures
+                </a></li>
             </ul>
             
             <div class="sidebar-title">File and Folder Tasks</div>
             <ul class="sidebar-list">
-                <li><a href="#">Make a new folder</a></li>
-                <li><a href="#">Share this folder</a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/folder-new.png" alt="New Folder"> Make a new folder
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/share.png" alt="Share"> Share this folder
+                </a></li>
             </ul>
             
             <div class="sidebar-title">Other Places</div>
             <ul class="sidebar-list">
-                <li><a href="#">My Computer</a></li>
-                <li><a href="#">My Documents</a></li>
-                <li><a href="#">Shared Pictures</a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/my-computer-16.png" alt="Computer"> My Computer
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/my-documents-16.png" alt="Documents"> My Documents
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/folder-16.png" alt="Shared"> Shared Pictures
+                </a></li>
             </ul>
         `;
         
@@ -135,19 +159,66 @@ function generateFolderContent(folderType) {
                 </div>
             </div>
         `;
-    } else {
+    } else if (folderType === "My Documents") {
         sidebarHTML = `
+            <div class="sidebar-title">Document Tasks</div>
+            <ul class="sidebar-list">
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/document.png" alt="Document"> Create new document
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/folder-16.png" alt="Settings"> Document settings
+                </a></li>
+            </ul>
+            
             <div class="sidebar-title">File and Folder Tasks</div>
             <ul class="sidebar-list">
-                <li><a href="#">Make a new folder</a></li>
-                <li><a href="#">Share this folder</a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/folder-new.png" alt="New Folder"> Make a new folder
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/share.png" alt="Share"> Share this folder
+                </a></li>
             </ul>
             
             <div class="sidebar-title">Other Places</div>
             <ul class="sidebar-list">
-                <li><a href="#">My Computer</a></li>
-                <li><a href="#">My Documents</a></li>
-                <li><a href="#">Shared Documents</a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/my-computer-16.png" alt="Computer"> My Computer
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/my-pictures-16.png" alt="Pictures"> My Pictures
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/folder-16.png" alt="Shared"> Shared Documents
+                </a></li>
+            </ul>
+        `;
+        
+        contentHTML = `<p class="empty-folder">This folder is empty.</p>`;
+    } else {
+        sidebarHTML = `
+            <div class="sidebar-title">File and Folder Tasks</div>
+            <ul class="sidebar-list">
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/folder-new.png" alt="New Folder"> Make a new folder
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/share.png" alt="Share"> Share this folder
+                </a></li>
+            </ul>
+            
+            <div class="sidebar-title">Other Places</div>
+            <ul class="sidebar-list">
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/my-computer-16.png" alt="Computer"> My Computer
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/my-documents-16.png" alt="Documents"> My Documents
+                </a></li>
+                <li><a href="#">
+                    <img src="../../assets/icons/windows/folder-16.png" alt="Shared"> Shared Documents
+                </a></li>
             </ul>
         `;
         
@@ -180,12 +251,8 @@ function setupThumbnailSelection() {
         });
     });
     
-    // Clear selection when clicking on empty space
-    document.getElementById('folder-content').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('folder-content')) {
-            clearSelection();
-        }
-    });
+    // The redundant click event listener has been removed as it's already handled by
+    // the document mousedown event listener for better performance
 }
 
 function selectItem(item) {

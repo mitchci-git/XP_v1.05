@@ -34,15 +34,6 @@ class WindowTemplates {
         // Create and configure iframe
         const iframe = document.createElement('iframe');
         
-        // Remove all potential iframe loading indicators
-        
-        // Prevent My Pictures flashing by setting special flag for this iframe
-        if (appName === 'folder-view' && title === 'My Pictures') {
-            iframe.style.opacity = '1';
-            iframe.style.visibility = 'visible';
-            iframe.style.background = '#fff';
-        }
-        
         // Sanitize title parameter for security
         const sanitizedTitle = title ? encodeURIComponent(title.replace(/[^\w\s-]/g, '')) : '';
         const sanitizedAppName = appName.replace(/[^\w\s-]/g, '');
@@ -84,68 +75,12 @@ class WindowTemplates {
         
         // Add load event listener to initialize iframe communication
         iframe.addEventListener('load', () => {
-            try {
-                // Use a more specific targetOrigin for additional security
-                const targetOrigin = window.location.origin;
-                iframe.contentWindow.postMessage({
-                    type: 'init-parent-comm',
-                    windowId: sanitizedAppName + '-window'
-                }, targetOrigin === 'null' ? '*' : targetOrigin);
-            } catch (e) {
-                // Ignore cross-origin errors
-            }
-        });
-        
-        // CRITICAL FIX: Add direct click handler to the iframe itself
-        iframe.addEventListener('load', function() {
-            // Get the window containing this iframe
-            let parentWindow = null;
-            let element = this;
-            while (element && !element.classList.contains('window')) {
-                element = element.parentElement;
-            }
-            parentWindow = element;
-            
-            if (parentWindow) {
-                const windowId = parentWindow.id;
-                
-                // Try to access iframe document directly
-                try {
-                    const iframeDoc = this.contentDocument || this.contentWindow.document;
-                    
-                    // Add a click event listener to the iframe's document
-                    iframeDoc.addEventListener('mousedown', function() {
-                        // Send message to parent window to bring this window to front
-                        window.dispatchEvent(new CustomEvent('iframe-activation', {
-                            detail: { windowId: windowId }
-                        }));
-                    }, true);
-                    
-                } catch (e) {
-                    // If same-origin policy prevents access
-                    console.log('Unable to add direct activation handler to iframe, falling back to messaging');
-                }
-            }
-        });
-        
-        // For My Pictures, add special handling
-        iframe.addEventListener('load', function() {
-            // For My Pictures, ensure images are immediately visible
-            if (appName === 'folder-view' && title === 'My Pictures') {
-                try {
-                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                    const style = iframeDoc.createElement('style');
-                    style.textContent = `
-                        .thumbnail-container img { 
-                            opacity: 1 !important; 
-                            visibility: visible !important;
-                        }
-                    `;
-                    iframeDoc.head.appendChild(style);
-                } catch (e) {
-                    console.warn('Could not access iframe document');
-                }
-            }
+            // Use a more specific targetOrigin for additional security
+            const targetOrigin = window.location.origin;
+            iframe.contentWindow.postMessage({
+                type: 'init-parent-comm',
+                windowId: sanitizedAppName + '-window'
+            }, targetOrigin === 'null' ? '*' : targetOrigin);
         });
         
         content.appendChild(iframe);
@@ -369,44 +304,7 @@ class WindowTemplates {
         iframe.setAttribute('data-app', sanitizedAppName);
         iframe.setAttribute('scrolling', 'no'); // Explicitly disable scrolling
         
-        // Add custom script to disable scrolling in the iframe content
-        iframe.addEventListener('load', function() {
-            try {
-                const iframeDoc = this.contentDocument || this.contentWindow.document;
-                const style = document.createElement('style');
-                style.textContent = `
-                    html, body { 
-                        width: 100% !important;
-                        height: 100% !important;
-                        overflow: hidden !important;
-                        margin: 0 !important;
-                        padding: 0 !important;
-                    }
-                    .content {
-                        width: 100% !important;
-                        height: 100% !important;
-                        margin: 0 !important;
-                        padding: 0 !important;
-                        overflow: hidden !important;
-                    }
-                    .music-player {
-                        width: 697px !important;
-                        height: 372px !important;
-                        margin: 0 !important;
-                        padding: 0 !important;
-                    }
-                `;
-                iframeDoc.head.appendChild(style);
-                
-                // Disable scrolling on body and html elements
-                iframeDoc.body.style.overflow = 'hidden';
-                iframeDoc.documentElement.style.overflow = 'hidden';
-            } catch(e) {
-                console.log('Could not inject styles into iframe:', e);
-            }
-        });
-        
-        // Add scale transformation to make content 50% of original size
+        // Apply scale transformation to make content 50% of original size
         Object.assign(iframe.style, {
             width: '100%',
             height: '100%',
@@ -451,47 +349,11 @@ class WindowTemplates {
         
         // Add load event listener for iframe communication
         iframe.addEventListener('load', () => {
-            try {
-                const targetOrigin = window.location.origin;
-                iframe.contentWindow.postMessage({
-                    type: 'init-parent-comm',
-                    windowId: 'music-player-window'
-                }, targetOrigin === 'null' ? '*' : targetOrigin);
-            } catch (e) {
-                // Ignore cross-origin errors
-            }
-        });
-        
-        // Add click handler to ensure window activation
-        iframe.addEventListener('load', function() {
-            // Get the window containing this iframe
-            let parentWindow = null;
-            let element = this;
-            while (element && !element.classList.contains('window')) {
-                element = element.parentElement;
-            }
-            parentWindow = element;
-            
-            if (parentWindow) {
-                const windowId = parentWindow.id;
-                
-                // Try to access iframe document directly
-                try {
-                    const iframeDoc = this.contentDocument || this.contentWindow.document;
-                    
-                    // Add a click event listener to the iframe's document
-                    iframeDoc.addEventListener('mousedown', function() {
-                        // Send message to parent window to bring this window to front
-                        window.dispatchEvent(new CustomEvent('iframe-activation', {
-                            detail: { windowId: windowId }
-                        }));
-                    }, true);
-                    
-                } catch (e) {
-                    // If same-origin policy prevents access
-                    console.log('Unable to add direct activation handler to iframe, falling back to messaging');
-                }
-            }
+            const targetOrigin = window.location.origin;
+            iframe.contentWindow.postMessage({
+                type: 'init-parent-comm',
+                windowId: 'music-player-window'
+            }, targetOrigin === 'null' ? '*' : targetOrigin);
         });
         
         content.appendChild(iframe);

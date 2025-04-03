@@ -2,8 +2,7 @@ window.onload = function() {
     // Address bar behavior
     const addressBar = document.querySelector('.address-bar');
     const goButton = document.querySelector('.go-button');
-    const backButton = document.querySelector('.browser-back');
-    const forwardButton = document.querySelector('.browser-forward');
+    const backButton = document.querySelector('.browser-back'); // TODO: Implement back/forward navigation properly
     const refreshButton = document.querySelector('.browser-refresh');
     const stopButton = document.querySelector('.browser-stop');
     const homeButton = document.querySelector('.browser-home');

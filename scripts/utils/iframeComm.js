@@ -28,7 +28,7 @@ export function setupIframeActivation() {
     document.addEventListener('mousedown', () => {
         window.parent.postMessage({
             type: 'iframe-clicked',
-            windowId: windowId || document.referrer,
+            windowId: windowId,
             timestamp: Date.now()
         }, '*');
     }, true); // Use capture phase for earliest handling

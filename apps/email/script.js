@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Cache form elements
-    const toField = document.getElementById('to');
     const fromField = document.getElementById('from');
     const nameField = document.getElementById('name');
     const subjectField = document.getElementById('subject');

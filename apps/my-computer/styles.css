@@ -1,147 +1,867 @@
+/* Basic Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Tahoma', 'Arial', sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 body {
-    font-family: "Tahoma", Arial, sans-serif;
-    font-size: 11px;
+  background-color: #fff;
+  overflow: hidden;
+  color: #000;
+  font-size: 11px;
 }
 
-.window-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    overflow: hidden;
-    background-color: #fff;
+/* Container for everything */
+.xp-explorer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #ece9d8;
+  /* We let this scroll if it's in a small window or frame. */
+  overflow: auto;
+  min-width: 300px;
+  min-height: 300px;
 }
 
-/* Sidebar styling */
+/* Menubar (simplified) */
+.menubar {
+  display: flex;
+  align-items: center;
+  background-color: #d6d3c5;
+  height: 24px;
+  padding: 0 8px;
+  font-size: 12px;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.menubar span {
+  margin-right: 1rem;
+  cursor: default;
+}
+
+/* Toolbar row with minimal controls */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d6d3c5;
+  padding: 4px 8px;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbar button {
+  background-color: #fff;
+  border: 1px solid #999;
+  padding: 2px 6px;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0 #ccc;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar label {
+  color: #444;
+}
+
+.toolbar input {
+  border: 1px solid #999;
+  background-color: #fff;
+  padding: 2px 4px;
+  width: 14rem;
+}
+
+/* Main container: left sidebar + right side content */
+.main-container {
+  display: flex;
+  flex: 1;
+  min-height: 0; /* so child elements can shrink properly */
+  /* We'll allow overflow so the user can scroll vertically if content is tall. */
+  overflow: auto;
+}
+
+/* Left sidebar with categories, tools, etc. */
 .sidebar {
-    width: 200px;
-    background-color: #ECF4FD;
-    padding: 15px 5px 15px 15px;
-    border-right: 1px solid #D5E4F1;
+  width: 10rem; /* narrower so preview area gets more space */
+  background-color: #f2f1eb;
+  border-right: 1px solid #999;
+  padding: 8px;
+  font-size: 12px;
+  overflow-y: auto;
+  flex-shrink: 0;
 }
 
-.sidebar-title {
-    font-weight: bold;
-    color: #003399;
-    padding: 5px 0;
-    margin-top: 5px;
-    font-size: 12px;
+.sidebar .section {
+  margin-bottom: 1rem;
 }
 
-.sidebar-list {
-    list-style-type: none;
-    margin-bottom: 10px;
-    padding-left: 5px;
+.sidebar .section-title {
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 4px;
+  padding-bottom: 2px;
 }
 
-.sidebar-list li {
-    padding: 4px 0;
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.sidebar-list a {
-    color: #0066CC;
-    text-decoration: none;
-    padding-left: 18px;
-    background: url('../../assets/icons/windows/folder.png') no-repeat left center;
-    display: block;
+.sidebar li {
+  padding: 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  line-height: 1.4;
 }
 
-.sidebar-list a:hover {
-    color: #3399FF;
-    text-decoration: underline;
+.sidebar li:hover {
+  background-color: #d6d3c5;
 }
 
-.details-box {
-    padding: 5px;
-    font-size: 11px;
-    color: #444;
+/* File panel: icons on the left, preview on the right */
+.file-panel {
+  flex: 1;
+  display: flex;
+  background-color: #fff;
+  overflow: hidden; /* horizontal sub-containers handle their own scrolling */
+  min-height: 0;
 }
 
-.progress-container {
-    margin-top: 5px;
+/* Left column: icons grid */
+.file-list {
+  width: 160px; /* narrower again so preview area is the main focus */
+  border-right: 1px solid #999;
+  padding: 8px;
+  overflow-y: auto;
+  background-color: #fff;
+  flex-shrink: 0;
 }
 
-.progress-bar {
-    height: 10px;
-    background-color: #ddd;
-    margin: 2px 0;
-    border: 1px solid #999;
+.icons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  text-align: center;
+  align-items: start;
 }
 
-.progress-fill {
-    height: 100%;
-    width: 30%;
-    background-color: #0078d7;
+/* Replacing images with shapes */
+.file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  padding: 4px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
-.progress-text {
-    font-size: 10px;
+.file-icon:hover {
+  background-color: #d6d3c5;
 }
 
-/* Content styling */
-.content {
-    flex: 1;
-    padding: 10px;
-    display: flex;
+.file-icon .shape {
+  width: 40px;
+  height: 40px;
+  background-color: #777;
+  margin-bottom: 4px;
+}
+
+.file-icon span {
+  font-size: 12px;
+  max-width: 80px;
+  word-wrap: break-word;
+}
+
+.file-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Right column: preview or details with bigger headings */
+.preview-area {
+  flex: 1;
+  padding: 24px; /* bigger padding to highlight content */
+  overflow-y: auto; /* ensures scrolling if this area gets long */
+  background-color: #fff;
+  min-height: 0;
+}
+
+.preview-area h3 {
+  margin-bottom: 16px;
+  font-size: 28px;
+  line-height: 1.3;
+}
+
+.preview-area p {
+  margin-bottom: 16px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.big-shape {
+  width: 90%;
+  max-width: 500px;
+  height: 250px;
+  background-color: #bbb;
+  margin-bottom: 16px;
+}
+
+/* Status bar at bottom */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  background-color: #d6d3c5;
+  border-top: 1px solid #999;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* Hidden toggled by JS for preview sections */
+.hidden {
+  display: none;
+}
+
+/* Simple media query for smaller screens: stack sidebar below menubar if needed */
+@media (max-width: 768px) {
+  .main-container {
     flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #999;
+    flex-shrink: 0;
+  }
+  .file-panel {
+    flex-direction: column;
+  }
+  .file-list {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #999;
+  }
 }
 
+/* Windows XP My Computer Styles */
+.my-computer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Portfolio-specific container */
+.portfolio-viewer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+}
+
+/* Address Bar - Matching My Pictures style */
 .address-bar {
-    height: 25px;
-    border: 1px solid #7A9EB1;
-    background: linear-gradient(to bottom, #FDFEFF 0%, #ECF3F7 100%);
-    display: flex;
-    align-items: center;
-    padding: 0 5px;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #FDFEFF 0%, #ECF3F7 100%);
+  border-bottom: 1px solid #7A9EB1;
+  padding: 4px 8px;
+  height: 25px;
 }
 
-.address-icon {
-    margin-right: 5px;
+.navigation-buttons {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
 }
 
-.folder-view {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 5px;
-    overflow-y: auto;
+.nav-button {
+  width: 22px;
+  height: 22px;
+  background: #ECE9D8;
+  border: 1px solid #ACA899;
+  margin-right: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.folder-item {
-    display: flex;
+.nav-button:hover {
+  background: #FFF8B5;
+  border-color: #FFC83C;
+}
+
+.nav-button img {
+  width: 16px;
+  height: 16px;
+}
+
+.nav-button[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.nav-button[disabled]:hover {
+  background: #ECE9D8;
+  border: 1px solid #ACA899;
+}
+
+.address-text {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0 8px;
+}
+
+.address-label {
+  margin-right: 4px;
+}
+
+.address-input-container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #7F9DB9;
+  padding: 2px 6px;
+  flex-grow: 1;
+  height: 20px;
+}
+
+.address-input-container img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.go-btn {
+  padding: 1px 8px;
+  height: 20px;
+  background: #ECE9D8;
+  border: 1px solid #ACA899;
+  cursor: pointer;
+}
+
+.go-btn:hover {
+  background: #FFF8B5;
+  border-color: #FFC83C;
+}
+
+/* Content area - two-column layout */
+.content-area {
+  display: flex;
+  flex-grow: 1;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+/* Task pane styling */
+.task-pane {
+  width: 200px;
+  background-color: #ECE9D8;
+  border-right: 1px solid #ACA899;
+  padding: 10px 0;
+  overflow-y: auto;
+}
+
+.task-section {
+  margin-bottom: 15px;
+}
+
+.task-header {
+  background: linear-gradient(to right, #0A246A, #A6CAF0);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 3px 0;
+  color: #0A246A;
+  cursor: pointer;
+}
+
+.task-item:hover {
+  text-decoration: underline;
+}
+
+.task-item img {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.details-content {
+  padding: 5px 10px;
+  line-height: 1.3;
+}
+
+.contact-link {
+  color: #0066CC;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+/* Files view area */
+.files-view {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.files-section {
+  margin-bottom: 20px;
+}
+
+.section-header {
+  font-size: 11px;
+  color: #003399;
+  margin-bottom: 8px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #D9D7D7;
+}
+
+.files-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  padding: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.file-item:hover {
+  background-color: #F0F8FF;
+  border: 1px solid #B8D6FB;
+}
+
+.file-item.selected {
+  background-color: #E5F3FF;
+  border: 1px solid #70C0E7;
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  margin-bottom: 2px;
+}
+
+.drive-capacity {
+  width: 100%;
+  margin-top: 3px;
+}
+
+.capacity-bar {
+  height: 8px;
+  width: 100%;
+  background-color: #E3E3E3;
+  border: 1px solid #ADADAD;
+  position: relative;
+}
+
+.capacity-used {
+  height: 100%;
+  background-color: #5A93D0;
+}
+
+.capacity-text {
+  font-size: 10px;
+  color: #555;
+  margin-top: 2px;
+}
+
+/* Portfolio content - main display area with project list and details */
+.portfolio-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Projects selector - the "drives" list */
+.projects-selector {
+  padding: 10px;
+  border-bottom: 1px solid #D9D7D7;
+}
+
+.section-header {
+  font-size: 12px;
+  color: #003399;
+  margin-bottom: 8px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #D9D7D7;
+}
+
+.files-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  padding: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.file-item:hover {
+  background-color: #F0F8FF;
+  border: 1px solid #B8D6FB;
+}
+
+.file-item.selected {
+  background-color: #E5F3FF;
+  border: 1px solid #70C0E7;
+}
+
+.file-icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.project-meta {
+  font-size: 9px;
+  color: #666;
+}
+
+/* Project details display area - main content */
+.project-details {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.project-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-content.active {
+  display: block;
+  opacity: 1;
+}
+
+.project-content h1 {
+  font-size: 18px;
+  color: #003399;
+  margin-bottom: 15px;
+}
+
+.project-info {
+  display: flex;
+  gap: 20px;
+}
+
+.project-description {
+  flex: 1;
+  min-width: 250px;
+}
+
+.project-description p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.project-description h3 {
+  font-size: 14px;
+  color: #333;
+  margin: 15px 0 10px;
+}
+
+.project-tags {
+  margin: 15px 0;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #ECF4FD;
+  border: 1px solid #D5E4F1;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.project-images {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  border: 1px solid #D5E4F1;
+  border-radius: 3px;
+}
+
+.image-gallery {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.image-gallery img {
+  width: calc(33.333% - 7px);
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #D5E4F1;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.image-gallery img:hover {
+  border-color: #70C0E7;
+}
+
+/* Video container styling */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border: 1px solid #D5E4F1;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.play-overlay:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Status bar styling - matching My Pictures style */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ECE9D8;
+  border-top: 1px solid #ACA899;
+  padding: 2px 8px;
+  height: 22px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .project-info {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-    padding: 5px;
-    width: 80px;
-    margin: 5px;
+  }
 }
 
-.folder-item:hover {
-    background-color: #E5F1FB;
-}
-
-.folder-item img {
-    width: 32px;
-    height: 32px;
-    margin-bottom: 5px;
-}
-
-.folder-item span {
-    font-size: 11px;
+@media (max-width: 600px) {
+  .content-area {
+    flex-direction: column;
+  }
+  
+  .task-pane {
+    width: 100%;
+    max-height: 150px;
+    border-right: none;
+    border-bottom: 1px solid #ACA899;
+  }
+  
+  .project-images {
     max-width: 100%;
+  }
+}
+
+/* Two-column layout specific styling */
+.two-column-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+/* Left navigation panel */
+.projects-nav {
+  width: 160px;
+  background-color: #ECF4FD;
+  border-right: 1px solid #D5E4F1;
+  padding: 15px 5px 15px 15px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.projects-nav .section-header {
+  font-weight: bold;
+  color: #003399;
+  padding: 5px 0;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #D5E4F1;
+  font-size: 12px;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.project-nav-item:hover {
+  background-color: #E5F1FB;
+  border: 1px solid transparent;
+}
+
+.project-nav-item.selected {
+  background-color: #E5F3FF;
+  border: 1px solid #70C0E7;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.nav-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.project-name {
+  font-size: 11px;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Project details area - now takes most of the space */
+.project-details {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+/* Responsive adjustments for the simplified layout */
+@media (max-width: 600px) {
+  .two-column-layout {
+    flex-direction: column;
+  }
+  
+  .projects-nav {
+    width: 100%;
+    max-height: 120px;
+    border-right: none;
+    border-bottom: 1px solid #D5E4F1;
+  }
+  
+  .projects-list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+  
+  .project-nav-item {
+    min-width: 80px;
+  }
 }

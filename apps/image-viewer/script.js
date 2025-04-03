@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle window sizing/notification
         if (!initialImageLoaded) {
             if (!isWindowMaximized) {
-                optimizeWindowSize();
+                notifyParentAboutImage(true);
             } else {
                 notifyParentAboutImage();
             }
@@ -274,6 +274,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Load the new image
             imageDisplay.src = image.path;
             
+            // Save the image name for error handling
+            const currentImageName = image.name;
+            
             // Process after image loads
             imageDisplay.onload = function() {
                 // Reset view settings immediately without animation
@@ -301,6 +304,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 50);
             };
             
+            // Add error handler to maintain consistency with handleLoadImage
+            imageDisplay.onerror = () => handleImageError(currentImageName);
+            
             // Update navigation buttons
             updateNavigationButtons();
         }
@@ -322,11 +328,5 @@ document.addEventListener('DOMContentLoaded', function() {
             preserveMaximized: true,
             allowResize: allowResize
         }, '*');
-    }
-    
-    // Window size optimization - placeholder function referenced in handleImageLoaded
-    function optimizeWindowSize() {
-        // Notify parent about image without specific sizing instructions
-        notifyParentAboutImage(true);
     }
 });

@@ -1,6 +1,4 @@
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -17,8 +15,6 @@ body {
     height: 100%;
     font-family: "Tahoma", sans-serif;
     font-size: 8pt;
-    margin: 0;
-    padding: 0;
     background-color: #F0F0F0;
     max-width: 100%;
     overflow-x: hidden;
@@ -30,7 +26,6 @@ a {
 
 .main {
     display: flex;
-    height: 100vh;
     min-height: 306px;
     width: 100%; /* Use full width for responsive layout */
     min-width: 550px; /* Ensure min-width is still 550px */
@@ -46,7 +41,6 @@ a {
 .mainwindow {
     background-color: #ECF6F9;
     border: none; /* Remove border completely */
-    border-radius: 0; /* Remove border radius completely to match parent window's inner shape */
     box-shadow: none; /* Remove shadow that could create visual spacing */
     margin: 0;
     padding: 0;
@@ -126,7 +120,7 @@ a {
 
 .tabbutton > .name {
     margin-top: 4px;
-    text-anchor: middle;
+    text-align: center;
     font-size: 8pt;
 }
 
@@ -411,15 +405,14 @@ a {
 }
 
 .avatar {
-    margin: 9px;
-    margin-left: 8px; /* 1px less margin on left side to stretch image leftward */
+    margin: 9px 9px 9px 8px; /* Consolidated margins */
     height: 92px;
-    width: 93px;  /* Increase width by 1px to account for the leftward shift */
+    width: 93px;  /* Maintain width for layout */
     border-radius: 2px;
     object-fit: cover;
     position: relative;
-    left: 0.95px; 
-    top: -0.15px;
+    left: 1px; /* Rounded up from 0.95px */
+    top: 0; /* Removed sub-pixel positioning */
 }
 
 .frame {

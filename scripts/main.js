@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize components in dependency order
     new Clock('.time', eventBus);
     new Desktop(eventBus);
-    const windowManager = new WindowManager(eventBus);
+    new WindowManager(eventBus);
     new StartMenu(eventBus);
     new Taskbar(eventBus);
     new CrtEffectManager(eventBus);
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         pendingImageData = null;
                     }
                 }
-            }, 500); // Give iframe enough time to initialize
+            }, 200); // Reduced timeout for faster response
         }
     });
     

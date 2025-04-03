@@ -11,6 +11,11 @@
     --icon-size-small: 16px;
 }
 
+/* Common font for UI elements */
+.taskbar, .start-menu, .menu-item, .all-programs-item {
+    font-family: "Tahoma", Arial, sans-serif;
+}
+
 .taskbar {
     position: absolute;
     bottom: 0;
@@ -96,7 +101,6 @@
     align-items: center;
     color: white;
     font-size: 11px;
-    font-family: "Tahoma", Arial, sans-serif;
     text-shadow: var(--taskbar-text-shadow);
     cursor: default;
     white-space: nowrap;
@@ -229,7 +233,6 @@
     position: static;
     color: white;
     font-size: 11px;
-    font-family: "Tahoma", Arial, sans-serif;
     text-shadow: var(--taskbar-text-shadow);
     white-space: nowrap;
     z-index: 2;
@@ -246,6 +249,8 @@
     height: 480px;
     background-image: url('../../assets/start-menu/start-menu-bg.png');
     display: none;
+    user-select: none;
+    cursor: default;
 }
 
 .start-menu.active {

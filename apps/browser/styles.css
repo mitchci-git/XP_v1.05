@@ -153,15 +153,6 @@ a:hover {
     outline: none;
 }
 
-.go-button {
-    height: 21px;
-    background: linear-gradient(to bottom, #FFFFFF, #ECE9D8);
-    border: none;
-    border-left: 1px solid #ACA899;
-    padding: 0 8px;
-    cursor: pointer;
-}
-
 .search-section {
     margin-left: 5px;
 }
@@ -463,20 +454,6 @@ p {
     position: relative;
 }
 
-/* Remove the image-caption styles or comment them out */
-/* 
-.image-caption {
-    font-size: 12px;
-    color: #666;
-    padding: 8px 5px;
-    text-align: center;
-    background-color: #f5f5f5;
-    border-top: 1px solid #eeeeee;
-    font-family: 'Trebuchet MS', Arial, sans-serif;
-    text-shadow: 1px 1px 0 white;
-}
-*/
-
 @media (max-width: 640px) {
     .content-columns {
         flex-direction: column;
@@ -498,7 +475,6 @@ p {
     color: #fff;
     -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     background-image: none !important;
     position: relative;
@@ -541,13 +517,11 @@ p {
 .retro-content-column {
     flex: 7; /* 70% */
     min-width: 0; /* Prevent flex item from overflowing */
-    max-width: 70%; /* Ensure it doesn't grow beyond 70% */
 }
 
 .retro-image-column {
     flex: 3; /* 30% */
     min-width: 0; /* Prevent flex item from overflowing */
-    max-width: 30%; /* Ensure it doesn't grow beyond 30% */
     border-left: 2px solid #444;
     padding-left: 15px;
     box-sizing: border-box; /* Include padding in width calculation */
@@ -607,7 +581,6 @@ p {
 
 .retro-text-hidden.expanded {
     display: block;
-    animation: expandText 0.5s ease;
 }
 
 .retro-text {
@@ -702,24 +675,6 @@ p {
 
 .main-column {
     flex: 1;
-}
-
-/* Custom Scrollbar for Retro Feel */
-.retro-content::-webkit-scrollbar {
-    width: 12px;
-}
-
-.retro-content::-webkit-scrollbar-track {
-    background: #222;
-}
-
-.retro-content::-webkit-scrollbar-thumb {
-    background: #444;
-    border-radius: 6px;
-}
-
-.retro-content::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }
 
 /* Custom Scrollbar for Windows XP Feel */

@@ -7,28 +7,21 @@
 @import 'gui/iframe-apps.css';
 @import 'effects/crt-effect.css';
 
+/* Z-index hierarchy */
+:root {
+  --z-base: 1;
+  --z-window: 100;
+  --z-tooltip: 1000;
+  --z-startmenu: 1500;
+  --z-crt: 20000;
+}
+
 /* Window states */
 .window.maximized {
   position: absolute;
   border-radius: 0;
   border-width: 0;
   overflow: hidden;
-}
-
-/* Messenger window dimensions */
-.window[data-program="messenger"] {
-  width: 550px;
-  height: 453px;
-  min-width: 550px;
-  min-height: 453px;
-}
-
-/* Maximized state overrides */
-.window.maximized[data-program="messenger"] {
-  width: 100% !important;
-  height: calc(100vh - 30px) !important;
-  max-width: none !important;
-  min-width: 0 !important;
 }
 
 .window.maximized .title-bar {
@@ -40,13 +33,29 @@
   background-size: 10px 10px;
 }
 
+/* Program-specific window dimensions */
+.window[data-program="messenger"] {
+  width: 550px;
+  height: 453px;
+  min-width: 550px;
+  min-height: 453px;
+}
+
+/* Maximized state overrides */
+.window.maximized[data-program="messenger"] {
+  width: 100%;
+  height: calc(100vh - 30px);
+  max-width: none;
+  min-width: 0;
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
   .window[data-program="messenger"] {
-    min-width: 280px !important;
-    max-width: calc(100vw - 20px) !important;
-    width: calc(100vw - 20px) !important;
-    height: auto !important;
+    min-width: 280px;
+    max-width: calc(100vw - 20px);
+    width: calc(100vw - 20px);
+    height: auto;
   }
   
   .taskbar {
@@ -69,35 +78,7 @@
   }
 }
 
-/* Tooltip styling */
-[data-tooltip] {
-  position: relative;
-}
-
-[data-tooltip]::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #ffffcc;
-  color: #000;
-  border: 1px solid #999;
-  padding: 4px 8px;
-  border-radius: 2px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s;
-  z-index: 1000; /* Ensure tooltips appear below CRT effects */
-}
-
-[data-tooltip]:hover::after {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* New unified tooltip styling for taskbar and applications */
+/* Tooltip styling - unified system */
 .taskbar-tooltip, .viewer-tooltip {
   position: absolute;
   background-color: #FFFECF;
@@ -106,21 +87,10 @@
   font-family: "Tahoma", Arial, sans-serif;
   font-size: 11px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-  z-index: 1000; /* Keep below CRT effects */
+  z-index: var(--z-tooltip);
   pointer-events: none;
   border-radius: 4px;
   white-space: nowrap;
-}
-
-/* Remove any existing tooltip styles that might conflict */
-.system-tooltip {
-  display: none !important;
-}
-
-/* CRT effect z-index values */
-.crt, .crt-glow, .crt-vignette, .crt-noise, .crt-scanline, .crt-aberration, .crt-flicker, .crt-persistence {
-  z-index: 20000; /* Much higher than tooltips */
-  pointer-events: none; /* Allow clicking through the CRT effects */
 }
 
 /* Start menu styling */
@@ -128,7 +98,13 @@
   position: absolute;
   bottom: 30px;
   left: 0;
-  z-index: 1500; /* Above regular content, below CRT effects */
+  z-index: var(--z-startmenu);
+}
+
+/* CRT effect z-index values */
+.crt, .crt-glow, .crt-vignette, .crt-noise, .crt-scanline, .crt-aberration, .crt-flicker, .crt-persistence {
+  z-index: var(--z-crt);
+  pointer-events: none;
 }
 
 /* Media Player Close Button */

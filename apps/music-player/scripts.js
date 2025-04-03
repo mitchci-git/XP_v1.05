@@ -145,71 +145,22 @@ function toggleAudio(idx) {
   }
 }
 
-// Tooltip functionality with optimized DOM manipulation
-function setupTooltips() {
-  const elements = document.querySelectorAll('[data-tooltip]');
-  let activeTooltip = null;
-  
-  elements.forEach(element => {
-    if (element.id === 'close-player') return;
-    
-    element.addEventListener('mouseenter', () => {
-      const tooltipText = element.getAttribute('data-tooltip');
-      if (!tooltipText) return;
-      
-      if (activeTooltip) {
-        activeTooltip.remove();
-      }
-      
-      const tooltip = document.createElement('div');
-      tooltip.className = 'music-player-tooltip';
-      tooltip.textContent = tooltipText;
-      document.body.appendChild(tooltip);
-      activeTooltip = tooltip;
-      
-      const elemRect = element.getBoundingClientRect();
-      tooltip.style.left = (elemRect.left + (elemRect.width / 2) - (tooltip.offsetWidth / 2)) + 'px';
-      tooltip.style.top = (elemRect.top - tooltip.offsetHeight - 10) + 'px';
-      
-      setTimeout(() => tooltip.style.opacity = '1', 50);
-    });
-    
-    element.addEventListener('mouseleave', () => {
-      if (activeTooltip) {
-        activeTooltip.style.opacity = '0';
-        setTimeout(() => {
-          if (activeTooltip) {
-            activeTooltip.remove();
-            activeTooltip = null;
-          }
-        }, 200);
-      }
-    });
-  });
-}
-
-document.addEventListener('DOMContentLoaded', setupTooltips);
-
 // Optimize close button functionality
 const closeBtn = document.getElementById('close-player');
 if (closeBtn) { 
   closeBtn.addEventListener('click', function() {
-    try {
-      if (window.parent && window.parent !== window) {
-        window.parent.postMessage({ action: 'closeMediaPlayer' }, '*');
-      } else {
-        const musicPlayer = document.querySelector('.music-player');
-        if (musicPlayer) {
-          musicPlayer.style.display = 'none';
-        }
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ action: 'closeMediaPlayer' }, '*');
+    } else {
+      const musicPlayer = document.querySelector('.music-player');
+      if (musicPlayer) {
+        musicPlayer.style.display = 'none';
       }
-      
-      if (playingAudio) {
-        playingAudio.pause();
-        playingAudio = null;
-      }
-    } catch (err) {
-      console.error("Error in close button handler:", err);
+    }
+    
+    if (playingAudio) {
+      playingAudio.pause();
+      playingAudio = null;
     }
   });
 }

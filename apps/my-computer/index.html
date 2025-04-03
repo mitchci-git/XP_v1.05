@@ -1,70 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <title>My Computer</title>
-    <link rel="stylesheet" href="https://unpkg.com/xp.css@0.2.3/dist/XP.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="window-content with-sidebar">
-        <div class="sidebar">
-            <div class="sidebar-title">System Tasks</div>
-            <ul class="sidebar-list">
-                <li><a href="#">View system information</a></li>
-                <li><a href="#">Add or remove programs</a></li>
-                <li><a href="#">Change a setting</a></li>
-            </ul>
-            
-            <div class="sidebar-title">Other Places</div>
-            <ul class="sidebar-list">
-                <li><a href="#">My Network Places</a></li>
-                <li><a href="#">My Documents</a></li>
-                <li><a href="#">Control Panel</a></li>
-                <li><a href="#">Shared Documents</a></li>
-            </ul>
-            
-            <div class="sidebar-title">Details</div>
-            <div class="details-box">
-                <p>System: Windows XP Professional</p>
-                <p>Version: 2002</p>
-                <div class="progress-container">
-                    <div class="progress-label">Disk space:</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <div class="progress-text">34.5 GB free of 120 GB</div>
-                </div>
-            </div>
+  <div class="my-computer portfolio-viewer">
+    <!-- Address Bar -->
+    <div class="address-bar">
+      <div class="navigation-buttons">
+        <button class="nav-button back-btn" title="Previous Project">
+          <img src="../../assets/icons/windows/back.png" alt="Back">
+        </button>
+        <button class="nav-button forward-btn" title="Next Project" disabled>
+          <img src="../../assets/icons/windows/forward.png" alt="Forward">
+        </button>
+      </div>
+      <div class="address-text">
+        <span class="address-label">Portfolio</span>
+        <div class="address-input-container">
+          <img src="../../assets/icons/windows/my-computer-16.png" alt="Portfolio">
+          <span class="address-path">My Portfolio Projects</span>
         </div>
-        <div class="content">
-            <div class="address-bar">
-                <div class="address-icon">🖴</div>
-                <div class="address-text">My Computer</div>
-            </div>
-            <div class="folder-view">
-                <div class="folder-item">
-                    <img src="../../assets/icons/windows/drive-c.png" alt="Drive C">
-                    <span>Local Disk (C:)</span>
-                </div>
-                <div class="folder-item">
-                    <img src="../../assets/icons/windows/drive-d.png" alt="Drive D">
-                    <span>CD Drive (D:)</span>
-                </div>
-                <div class="folder-item">
-                    <img src="../../assets/icons/windows/control-panel.png" alt="Control Panel">
-                    <span>Control Panel</span>
-                </div>
-                <div class="folder-item">
-                    <img src="../../assets/icons/windows/network.png" alt="Network">
-                    <span>Network Connections</span>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    
-    <script src="script.js"></script>
+
+    <!-- Main content area with simplified two-column layout -->
+    <div class="content-area two-column-layout">
+      <!-- Left side project navigation (thin column) -->
+      <div class="projects-nav">
+        <h2 class="section-header">Projects</h2>
+        <div class="projects-list">
+          <!-- Project 1 -->
+          <div class="project-nav-item" data-project="reds-rebrand">
+            <div class="nav-icon">
+              <img src="../../assets/icons/windows/drive-c.png" alt="Reds Rebrand">
+            </div>
+            <span class="project-name">Reds Rebrand</span>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-nav-item" data-project="rugby-website">
+            <div class="nav-icon">
+              <img src="../../assets/icons/windows/drive-d.png" alt="Rugby Website">
+            </div>
+            <span class="project-name">Rugby Website</span>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-nav-item" data-project="motion-reel">
+            <div class="nav-icon">
+              <img src="../../assets/icons/windows/cd-drive.png" alt="Motion Reel">
+            </div>
+            <span class="project-name">Motion Reel 2024</span>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-nav-item" data-project="rwc-social">
+            <div class="nav-icon">
+              <img src="../../assets/icons/windows/drive-network.png" alt="RWC Social">
+            </div>
+            <span class="project-name">RWC Social Pack</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side project details (large area) -->
+      <div class="project-details" id="project-details">
+        <!-- Project 1: Reds Rebrand -->
+        <div class="project-content" id="project-reds-rebrand">
+          <h1>Reds Rebrand</h1>
+          <div class="project-info">
+            <div class="project-description">
+              <p>A comprehensive rebrand for the Queensland Reds rugby team with bold typography, fresh color palette, and strong social rollout assets.</p>
+              <div class="project-tags">
+                <span class="tag">Branding</span>
+                <span class="tag">Sports</span>
+                <span class="tag">Identity</span>
+              </div>
+              <h3>Project Overview</h3>
+              <p>This project involved a complete overhaul of the Queensland Reds visual identity, creating a modern brand that respects the team's heritage while positioning them for the future.</p>
+            </div>
+            <div class="project-images">
+              <img src="../../assets/portfolio/reds/main.jpg" alt="Reds Rebrand Main Image" class="main-image">
+              <div class="image-gallery">
+                <img src="../../assets/portfolio/reds/detail1.jpg" alt="Reds Logo Detail">
+                <img src="../../assets/portfolio/reds/detail2.jpg" alt="Reds Brand Applications">
+                <img src="../../assets/portfolio/reds/detail3.jpg" alt="Reds Social Media">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Rugby Website -->
+        <div class="project-content" id="project-rugby-website">
+          <h1>Rugby Website Redesign</h1>
+          <div class="project-info">
+            <div class="project-description">
+              <p>Modern web design with a retro 90s vibe, built with fluid layouts and bright neon elements to celebrate rugby's digital presence.</p>
+              <div class="project-tags">
+                <span class="tag">Web Design</span>
+                <span class="tag">UX/UI</span>
+                <span class="tag">Responsive</span>
+              </div>
+              <h3>Project Overview</h3>
+              <p>This website redesign balanced modern web standards with nostalgic design elements to create a unique digital experience for rugby fans.</p>
+            </div>
+            <div class="project-images">
+              <img src="../../assets/portfolio/rugby-site/main.jpg" alt="Rugby Website Main Image" class="main-image">
+              <div class="image-gallery">
+                <img src="../../assets/portfolio/rugby-site/detail1.jpg" alt="Website Mobile View">
+                <img src="../../assets/portfolio/rugby-site/detail2.jpg" alt="Website Desktop View">
+                <img src="../../assets/portfolio/rugby-site/detail3.jpg" alt="Website Components">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Motion Reel -->
+        <div class="project-content" id="project-motion-reel">
+          <h1>Motion Reel 2024</h1>
+          <div class="project-info">
+            <div class="project-description">
+              <p>A showcase of animated promos, transitions, and custom motion graphics created for various social media campaigns and video projects.</p>
+              <div class="project-tags">
+                <span class="tag">Motion Graphics</span>
+                <span class="tag">Animation</span>
+                <span class="tag">Video</span>
+              </div>
+              <h3>Project Overview</h3>
+              <p>This motion reel demonstrates my technical animation skills and creative approaches to storytelling through motion design.</p>
+            </div>
+            <div class="project-images">
+              <div class="video-container main-image">
+                <img src="../../assets/portfolio/motion/thumbnail.jpg" alt="Motion Reel Thumbnail" class="video-thumb">
+                <div class="play-overlay">▶</div>
+              </div>
+              <div class="image-gallery">
+                <img src="../../assets/portfolio/motion/detail1.jpg" alt="Motion Project 1">
+                <img src="../../assets/portfolio/motion/detail2.jpg" alt="Motion Project 2">
+                <img src="../../assets/portfolio/motion/detail3.jpg" alt="Motion Project 3">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: RWC Social -->
+        <div class="project-content" id="project-rwc-social">
+          <h1>Rugby World Cup Social Pack</h1>
+          <div class="project-info">
+            <div class="project-description">
+              <p>Vibrant templates for matchday announcements, score updates, and highlight reels designed for the Rugby World Cup social media channels.</p>
+              <div class="project-tags">
+                <span class="tag">Social Media</span>
+                <span class="tag">Templates</span>
+                <span class="tag">Sports</span>
+              </div>
+              <h3>Project Overview</h3>
+              <p>This comprehensive social media kit provided the Rugby World Cup with a consistent yet dynamic visual language across all digital platforms.</p>
+            </div>
+            <div class="project-images">
+              <img src="../../assets/portfolio/rwc/main.jpg" alt="RWC Social Pack Main Image" class="main-image">
+              <div class="image-gallery">
+                <img src="../../assets/portfolio/rwc/detail1.jpg" alt="Instagram Templates">
+                <img src="../../assets/portfolio/rwc/detail2.jpg" alt="Twitter Templates">
+                <img src="../../assets/portfolio/rwc/detail3.jpg" alt="Facebook Templates">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="status-bar">
+      <div class="status-left">
+        <span class="status-text">4 projects</span>
+      </div>
+      <div class="status-right">
+        <span class="status-text">Portfolio</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
 </body>
 </html>

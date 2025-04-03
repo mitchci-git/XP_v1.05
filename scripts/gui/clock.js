@@ -38,7 +38,6 @@ export default class Clock {
             
             // Initial timeout to align with the start of a minute
             this.initialTimeoutId = setTimeout(() => {
-                this.updateClock();
                 // Then update every minute
                 this.intervalId = setInterval(() => this.updateClock(), 60000);
             }, delay);
@@ -59,14 +58,7 @@ export default class Clock {
         this.clockElement.textContent = formattedTime;
         
         if (this.eventBus) {
-            this.eventBus.publish('clock:time-changed', {
-                hours,
-                minutes,
-                displayHours, 
-                displayMinutes,
-                ampm,
-                formattedTime
-            });
+            this.eventBus.publish('clock:time-changed', { formattedTime });
         }
     }
     

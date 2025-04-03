@@ -172,17 +172,6 @@ export default class WindowManager {
                 }
             }
         }, true); // Use capture phase for earliest handling
-
-        // Add direct window activation event listener
-        window.addEventListener('iframe-activation', (event) => {
-            const windowId = event.detail.windowId;
-            if (windowId) {
-                const window = document.getElementById(windowId);
-                if (window) {
-                    this.bringToFront(window);
-                }
-            }
-        });
     }
     
     subscribeToEvents() {
@@ -431,9 +420,12 @@ export default class WindowManager {
             window.style.width = '550px';
             window.style.height = '453px'; // Reduced from 480px to 453px
         } else if (program.template === "browser") {
-            // Make browser window 25% larger than default, then another 25% larger, and now 30% taller
-            window.style.width = '938px'; // 750px * 1.25 (rounded from 937.5)
-            window.style.height = '813px'; // 625px * 1.3 (rounded from 812.5)
+            window.style.width = '800px';
+            window.style.height = '600px';
+        } else if (program.template === "my-computer") {
+            // Double the default size for My Computer (100% increase)
+            window.style.width = '1200px'; // Increased from 600px
+            window.style.height = '800px';  // Increased from 400px
         } else {
             window.style.width = '600px';
             window.style.height = '400px';
@@ -494,10 +486,6 @@ export default class WindowManager {
                 return;
             }
             
-            // Continue with auto-resizing for other programs if needed
-            if (programName === 'browser' || programName === 'image-viewer') {
-                // Add specific handling for browser or image viewer if needed
-            }
         } catch (e) {
             // Cross-origin restrictions might prevent accessing iframe content
             console.warn('Unable to adjust window to iframe content:', e);

@@ -390,27 +390,6 @@
     }
 }
 
-.window[data-program="image-viewer"] {
-    width: 840px !important;     /* Reduced from 960px */
-    height: 750px !important;    /* Height remains the same */
-    min-width: 840px !important; /* Reduced from 960px */
-    min-height: 750px !important;
-    max-height: calc(100vh - 60px) !important;
-    max-width: calc(100vw - 40px) !important;
-}
-
-/* Make sure the content scales properly */
-.window[data-program="image-viewer"] .window-body {
-    width: 100% !important;
-    height: calc(100% - 52px) !important; /* Title bar + status bar height */
-}
-
-/* Make sure the iframe scales properly */
-.window[data-program="image-viewer"] iframe {
-    width: 100% !important;
-    height: 100% !important;
-}
-
 /* Image viewer specific styles */
 .window[data-program="image-viewer"] {
     width: 840px !important;
@@ -449,7 +428,7 @@ iframe {
     pointer-events: auto !important;
 }
 
-/* Optimization for window dragging */
+/* Optimization for window dragging - consolidated */
 .dragging-window {
     will-change: transform;
     cursor: move !important;
@@ -457,9 +436,7 @@ iframe {
 
 .dragging-window iframe {
     pointer-events: none !important;
-    /* Optional: Slightly reduce opacity during drag for an optimization visual cue */
     opacity: 0.92 !important;
-    /* Use optimized filtering during drag */
     filter: saturate(98%) !important;
     transition: none !important;
 }
@@ -469,16 +446,11 @@ iframe {
     cursor: move !important;
 }
 
-/* Optimization for window dragging */
-.dragging-window {
-    will-change: transform;
+/* My Pictures specific styling */
+.window[data-program="my-pictures"] {
+    /* Common window settings */
 }
 
-.dragging-window iframe {
-    pointer-events: none;
-}
-
-/* Add special handling for My Pictures window */
 .window[data-program="my-pictures"] .window-body {
     padding: 0 !important;
     margin: 0 !important;
@@ -486,125 +458,22 @@ iframe {
     overflow: hidden !important;
 }
 
-.window[data-program="my-pictures"] .window-body iframe {
-    width: 100% !important;
-    height: 100% !important;
-    border: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-}
-
-/* Hide status bar completely for My Pictures window */
-.window[data-program="my-pictures"] .status-bar {
-    display: none !important;
-}
-
-/* My Pictures specific styling */
 .window[data-program="my-pictures"] .status-bar {
     display: none !important; /* Hide status bar completely */
-}
-
-.window[data-program="my-pictures"] .window-body {
-    padding: 0 !important; /* Remove padding */
-}
-
-.window[data-program="my-pictures"] .thumbnail-item {
-    width: 100px;
-    height: 110px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 5px;
-    position: relative;
-    border: 1px solid transparent;
-    user-select: none;
-}
-
-/* Add hover effect that matches selection effect */
-.window[data-program="my-pictures"] .thumbnail-item:hover:not(.selected) {
-    background-color: rgba(49, 106, 197, 0.1);
-    border: 1px solid rgba(49, 106, 197, 0.4);
-}
-
-.window[data-program="my-pictures"] .thumbnail-item.selected {
-    background-color: rgba(49, 106, 197, 0.2);
-    border: 1px solid rgba(49, 106, 197, 0.8);
-}
-
-/* Add hover effect on selected items */
-.window[data-program="my-pictures"] .thumbnail-item.selected:hover {
-    background-color: rgba(49, 106, 197, 0.3);
-}
-
-/* Base grid layout for My Pictures */
-.window[data-program="my-pictures"] .thumbnails-view {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 10px;
-    padding: 10px;
-    width: 100%; /* Ensure it takes full width */
-    box-sizing: border-box; /* Include padding in width calculation */
-}
-
-/* Responsive grid for maximized window - use auto-fill to adapt to available width */
-.window.maximized[data-program="my-pictures"] .thumbnails-view,
-.window[data-program="my-pictures"][data-maximized="true"] .thumbnails-view {
-    display: grid !important; /* Use grid instead of flex */
-    grid-template-columns: repeat(auto-fill, 100px) !important; /* Auto-fill columns based on container width */
-    grid-gap: 15px !important; /* Slightly larger gap in maximized mode */
-    justify-content: start !important; /* Align items to start of container */
-    width: 100% !important;
-    padding: 15px !important;
-    overflow: auto !important; /* Enable scrolling if needed */
-}
-
-/* Remove fixed positioning on thumbnails in maximized window */
-.window.maximized[data-program="my-pictures"] .thumbnail-item,
-.window[data-program="my-pictures"][data-maximized="true"] .thumbnail-item {
-    /* Allow normal grid positioning */
-    margin: 0 !important;
-}
-
-.window[data-program="my-pictures"] .thumbnail-container {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 5px;
-    border: 1px solid #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background: #f0f0f0;
-}
-
-/* Make images completely fill their containers without distortion */
-.window[data-program="my-pictures"] .thumbnail-container img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important; /* Changed from fill to cover to prevent distortion */
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* My Pictures specific styling - clean up duplicate rules */
-.window[data-program="my-pictures"] .window-body {
-    padding: 0 !important;
-    margin: 0 !important;
-    height: 100% !important;
-    overflow: hidden !important;
-}
-
-.window[data-program="my-pictures"] .status-bar {
-    display: none !important;
 }
 
 /* Ensure content fills the entire window width */
 .window[data-program="my-pictures"] .content {
     max-width: 100% !important;
     flex: 1 !important;
+}
+
+/* Ensure folder view container expands properly */
+.window[data-program="my-pictures"] .folder-view {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    overflow: auto !important;
 }
 
 /* Base thumbnail styling */
@@ -622,6 +491,21 @@ iframe {
     user-select: none;
 }
 
+/* Add hover and selection effects */
+.window[data-program="my-pictures"] .thumbnail-item:hover:not(.selected) {
+    background-color: rgba(49, 106, 197, 0.1);
+    border: 1px solid rgba(49, 106, 197, 0.4);
+}
+
+.window[data-program="my-pictures"] .thumbnail-item.selected {
+    background-color: rgba(49, 106, 197, 0.2);
+    border: 1px solid rgba(49, 106, 197, 0.8);
+}
+
+.window[data-program="my-pictures"] .thumbnail-item.selected:hover {
+    background-color: rgba(49, 106, 197, 0.3);
+}
+
 /* Fix the thumbnails view to fill available width */
 .window[data-program="my-pictures"] .thumbnails-view {
     display: grid;
@@ -633,21 +517,17 @@ iframe {
     overflow: visible !important;
 }
 
-/* Ensure folder view container expands properly */
-.window[data-program="my-pictures"] .folder-view {
-    display: block !important;
-    width: 100% !important;
-    padding: 0 !important;
-    overflow: auto !important;
-}
-
-/* Remove any conflicting maximized window styles that were added earlier */
+/* Responsive grid for maximized window */
 .window.maximized[data-program="my-pictures"] .thumbnails-view,
 .window[data-program="my-pictures"][data-maximized="true"] .thumbnails-view {
     grid-template-columns: repeat(auto-fill, 100px) !important;
+    grid-gap: 15px !important;
+    justify-content: start !important;
+    padding: 15px !important;
+    overflow: auto !important;
 }
 
-/* Make images completely fill their containers without distortion */
+/* Thumbnail container styling */
 .window[data-program="my-pictures"] .thumbnail-container {
     width: 80px;
     height: 80px;
@@ -663,7 +543,7 @@ iframe {
 .window[data-program="my-pictures"] .thumbnail-container img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+    object-fit: cover !important; /* Prevents distortion */
     opacity: 1 !important;
     visibility: visible !important;
 }

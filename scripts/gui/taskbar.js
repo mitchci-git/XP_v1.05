@@ -8,9 +8,6 @@ export default class Taskbar {
         this.eventBus = eventBus;
         this.startButton = document.getElementById('start-button');
         
-        // Clean up any existing start menu
-        this.cleanupExistingStartMenu();
-        
         // Initialize components
         this.startMenuComponent = new StartMenu(this.eventBus);
         this.setupStartButtonEffects();
@@ -18,16 +15,6 @@ export default class Taskbar {
         
         // Subscribe to events
         this.subscribeToEvents();
-    }
-    
-    /**
-     * Remove any existing start menu elements
-     */
-    cleanupExistingStartMenu() {
-        const existingStartMenu = document.getElementById('start-menu');
-        if (existingStartMenu) {
-            existingStartMenu.parentNode.removeChild(existingStartMenu);
-        }
     }
     
     /**
@@ -56,7 +43,7 @@ export default class Taskbar {
         this.startButton.addEventListener('mouseleave', () => {
             // Only remove active class if menu is not open
             const startMenuElement = document.querySelector('.startmenu');
-            if (!startMenuElement || !startMenuElement.classList.contains('active')) {
+            if (!startMenuElement) {
                 this.startButton.classList.remove('active');
             }
         });
@@ -99,10 +86,12 @@ export default class Taskbar {
                 // Position tooltip above the icon
                 const iconRect = icon.getBoundingClientRect();
                 tooltip.style.bottom = (window.innerHeight - iconRect.top + 5) + 'px';
-                tooltip.style.left = (iconRect.left + (iconRect.width / 2) - 50) + 'px';
                 
-                // Add tooltip to DOM and track it
+                // Add tooltip to DOM first to calculate its actual width
                 document.body.appendChild(tooltip);
+                tooltip.style.left = (iconRect.left + (iconRect.width / 2) - (tooltip.offsetWidth / 2)) + 'px';
+                
+                // Track the tooltip
                 activeTooltip = tooltip;
             });
             

@@ -18,18 +18,19 @@
   overflow: hidden;
   visibility: hidden; /* Start hidden */
   opacity: 0;
-  /* Fix transition to be more reliable */
-  transition: opacity 0.1s ease, visibility 0s linear 0.1s;
+  /* Remove transition for closing to make it instant */
+  transition: opacity 0s, visibility 0s;
   transform: translateZ(0); /* Force GPU acceleration for smoother rendering */
   will-change: opacity, visibility; /* Hint to browser for optimization */
-  user-select: none; /* Prevent text selection */
-  cursor: default; /* Ensure default cursor throughout */
+  user-select: none; /* Prevent text selection - consolidated */
+  cursor: default; /* Ensure default cursor throughout - consolidated */
+  font-family: "Tahoma", Arial, sans-serif; /* Consolidated font family */
 }
 
 .startmenu.active {
   visibility: visible;
   opacity: 1;
-  /* Ensure transition works in reverse */
+  /* Keep transition only for opening */
   transition: opacity 0.1s ease, visibility 0s;
 }
 
@@ -93,7 +94,6 @@
 }
 
 .username {
-  font-family: "Tahoma", Arial, sans-serif;
   font-size: 13.5px;
   letter-spacing: 0.5px;
   font-weight: bold;
@@ -141,7 +141,6 @@
   width: 100%;
   overflow-y: auto;
   flex-grow: 1;
-  user-select: none; /* Prevent text selection */
 }
 
 .middle-left .menu-items {
@@ -160,11 +159,8 @@
   width: 100%;
   padding: 0;
   margin: 0;
-  cursor: default;
   box-sizing: border-box;
-  transition: all 0.1s ease, box-shadow 0.15s ease;
-  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0); /* Base state for transition */
-  user-select: none; /* Prevent text selection */
+  transition: all 0.1s ease;
 }
 
 /* Left side menu items - standardized height */
@@ -217,12 +213,9 @@
 /* Menu item text - combined selectors for standardization */
 .item-title, 
 .item-description {
-  font-family: "Tahoma", Arial, sans-serif;
   font-size: 11.5px;
   letter-spacing: 0.3px; /* Consistent letter spacing */
   font-weight: normal; /* Reset to normal */
-  user-select: none; /* Prevent text selection */
-  cursor: default; /* Ensure default cursor */
 }
 
 /* Apply bold only to specific items - using ID selectors for reliability */
@@ -235,9 +228,22 @@
   letter-spacing: normal;
 }
 
+/* Apply bold styling to the Internet title */
+#menu-internet .item-title {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Style the description for Internet Explorer */
+#menu-internet .item-description {
+  font-size: 9.5px;
+  color: #777777;
+  line-height: 1.2;
+  margin-top: 1px;
+}
+
 /* Descriptions */
 .item-description {
-  font-family: "Tahoma", Arial, sans-serif;
   font-size: 9.5px;
   color: #777777;
   line-height: 1.2;
@@ -288,9 +294,7 @@
   height: 35px;
   font-weight: 600; /* Changed from 700 to 600 to match Internet and Email */
   font-size: 12px;
-  cursor: default; /* Prevent flashing cursor */
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
-  user-select: none; /* Disable text selection */
 }
 
 .all-programs-button span {
@@ -370,13 +374,9 @@
   margin: 0 5px; /* Keep spacing between buttons */
   color: white;
   font-size: 12.5px;
-  font-family: "Tahoma", Arial, sans-serif;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
-  cursor: default;
   box-shadow: none;
   transition: none;
-  user-select: none;
-  /* Remove border-radius - no visual indication of button boundaries */
 }
 
 /* Add padding to the text for spacing */
@@ -417,12 +417,10 @@
   display: none;
   overflow: visible;
   padding: 0; /* Remove all padding to allow highlight to reach edges */
-  user-select: none; /* Prevent text selection */
 }
 
-/* Remove the triangle pointer */
-.all-programs-menu::before {
-  display: none;
+.all-programs-menu.active {
+  display: block;
 }
 
 /* Add the blue gradient strip on the left side */
@@ -442,10 +440,6 @@
   z-index: 1; /* Ensure consistent z-index for blue gradient strip */
 }
 
-.all-programs-menu.active {
-  display: block;
-}
-
 /* Menu container with scroll capability */
 .all-programs-items {
   list-style: none;
@@ -463,16 +457,13 @@
   align-items: center;
   padding: 3px 8px 3px 30px; /* Changed from 28px to 30px for text padding */
   margin: 0;
-  font-family: "Tahoma", Arial, sans-serif;
   font-size: 11px;
   color: #000000;
-  cursor: default;
   border: none;
   white-space: nowrap;
   min-height: 20px;
   width: 100%;
   box-sizing: border-box;
-  user-select: none; /* Prevent text selection */
 }
 
 /* Menu item hover effect - ensure it extends fully left */
@@ -526,14 +517,9 @@
   font-size: 8px;
 }
 
-/* Update submenu indicator color on hover */
-.all-programs-item:hover::after {
-  color: white;
-}
-
-/* Fix: Only apply ::after hover styles to category items that actually have the arrow */
+/* Update submenu indicator color on hover - only for categories */
 .all-programs-item.category:hover::after {
-  color: white; /* Changed from #1E395B to white for hover state */
+  color: white;
 }
 
 /* Menu separator - adjusted to full width */

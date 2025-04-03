@@ -4,19 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Folder View</title>
-    <link rel="stylesheet" href="https://unpkg.com/xp.css@0.2.3/dist/XP.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="window-content with-sidebar">
-        <div class="sidebar" id="sidebar-container"></div>
-        <div class="content">
-            <div class="address-bar">
-                <div class="address-icon">📁</div>
-                <div class="address-text" id="folder-title">Folder</div>
+    <div class="portfolio-viewer">
+        <!-- Address Bar -->
+        <div class="address-bar">
+            <div class="navigation-buttons">
+                <button class="nav-button back-btn" title="Back"></button>
+                    <img src="../../assets/icons/windows/back.png" alt="Back">
+                </button>
+                <button class="nav-button forward-btn" title="Forward" disabled>
+                    <img src="../../assets/icons/windows/forward.png" alt="Forward">
+                </button>
             </div>
-            <div class="folder-view" id="folder-content">
+            <div class="address-text">
+                <span class="address-label">Address</span>
+                <div class="address-input-container">
+                    <img src="../../assets/icons/windows/folder-16.png" alt="Folder">
+                    <span class="address-path" id="folder-title">Folder</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content area with simplified two-column layout -->
+        <div class="content-area two-column-layout">
+            <!-- Left side project navigation (thin column) -->
+            <div class="projects-nav" id="sidebar-container"></div>
+
+            <!-- Right side project details (large area) -->
+            <div class="project-details" id="folder-content">
                 <!-- Content will be filled by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Status bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-text">Ready</span>
+            </div>
+            <div class="status-right">
+                <span class="status-text" id="folder-type">My Pictures</span>
             </div>
         </div>
     </div>

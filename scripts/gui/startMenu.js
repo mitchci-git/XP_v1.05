@@ -57,18 +57,6 @@ export default class StartMenu {
         allProgramsMenu.className = 'all-programs-menu';
         allProgramsMenu.innerHTML = `
             <ul class="all-programs-items">
-                <li class="all-programs-item">
-                    <img src="./assets/icons/windows/paint.png" alt="Paint">
-                    Paint
-                </li>
-                <li class="all-programs-item">
-                    <img src="./assets/icons/windows/wordpad.png" alt="WordPad">
-                    WordPad
-                </li>
-                <li class="all-programs-item">
-                    <img src="./assets/icons/windows/calculator.png" alt="Calculator">
-                    Calculator
-                </li>
                 <li class="all-programs-separator"></li>
                 <li class="all-programs-item category">
                     <img src="./assets/icons/windows/folder.png" alt="Folder">
@@ -102,7 +90,8 @@ export default class StartMenu {
                         <li class="menu-item" id="menu-internet">
                             <img src="./assets/start-menu/internet.png" alt="Internet Explorer">
                             <div class="item-content">
-                                <span class="item-title">Internet Explorer</span>
+                                <span class="item-title">Internet</span>
+                                <span class="item-description">Internet Explorer</span>
                             </div>
                         </li>
                         <li class="menu-item" id="menu-email">
@@ -221,8 +210,7 @@ export default class StartMenu {
             }
         };
         
-        // Listen for iframe activation events
-        window.addEventListener('iframe-activation', handleIframeClick);
+        // Listen for iframe focus events
         window.addEventListener('iframe:focus', handleIframeClick);
         
         // Also intercept message events which might come from iframes
@@ -245,8 +233,7 @@ export default class StartMenu {
             'my-documents': () => this.openProgram('my-documents'),
             'my-computer': () => this.openProgram('my-computer'),
             'messenger': () => this.openProgram('messenger'),
-            'my-pictures': () => this.openProgram('my-pictures'), // Make sure this is included
-            'paint': () => this.openProgram('paint'),
+            'my-pictures': () => this.openProgram('my-pictures'),
             'email': () => this.openProgram('email'),
             'media-player': () => this.openProgram('music-player') // Updated to open music-player instead of media-player
         };
@@ -284,11 +271,17 @@ export default class StartMenu {
         const shutDownButton = this.startMenu.querySelector('#btn-shut-down');
         
         if (logOffButton) {
-            logOffButton.addEventListener('click', () => this.closeStartMenu());
+            logOffButton.addEventListener('click', () => {
+                // TODO: Add actual log off functionality in the future
+                this.closeStartMenu();
+            });
         }
         
         if (shutDownButton) {
-            shutDownButton.addEventListener('click', () => this.closeStartMenu());
+            shutDownButton.addEventListener('click', () => {
+                // TODO: Add actual shutdown functionality in the future
+                this.closeStartMenu();
+            });
         }
 
         // Set up All Programs menu with slight delay to ensure DOM is ready

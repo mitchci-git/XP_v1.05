@@ -18,8 +18,8 @@ export default class CrtEffectManager {
             noise: document.querySelector('.crt-noise'),
             scanline: document.querySelector('.crt-scanline'),
             aberration: document.querySelector('.crt-aberration'),
-            flicker: document.querySelector('.crt-flicker'),
-            persistence: document.querySelector('.crt-persistence')
+            flicker: document.querySelector('.crt-flicker')
+            // Removed persistence element that has no corresponding usage
         };
     }
     
@@ -75,7 +75,7 @@ export default class CrtEffectManager {
         this.updateCrtEffects();
         this.saveSettings();
         
-        this.eventBus.publish('crt:status-changed', { enabled: this.crtEnabled });
+        // Removed unused event publication as nothing subscribes to this event
     }
     
     disableCrtEffects() {
@@ -102,14 +102,17 @@ export default class CrtEffectManager {
         
         if (settings.scanlineOpacity !== undefined) {
             root.style.setProperty('--crt-scanline-opacity', settings.scanlineOpacity);
+            this.scanlineOpacity = settings.scanlineOpacity;
         }
         
         if (settings.flickerIntensity !== undefined) {
             root.style.setProperty('--crt-flicker-opacity', settings.flickerIntensity);
+            this.flickerIntensity = settings.flickerIntensity;
         }
         
         if (settings.vignetteOpacity !== undefined) {
             root.style.setProperty('--crt-vignette-opacity', settings.vignetteOpacity);
+            this.vignetteOpacity = settings.vignetteOpacity;
         }
         
         this.saveSettings();
@@ -117,7 +120,14 @@ export default class CrtEffectManager {
     
     saveSettings() {
         try {
-            localStorage.setItem('crt-enabled', String(this.crtEnabled));
+            const settings = {
+                enabled: this.crtEnabled,
+                scanlineOpacity: this.scanlineOpacity,
+                flickerIntensity: this.flickerIntensity,
+                vignetteOpacity: this.vignetteOpacity
+            };
+            
+            localStorage.setItem('crt-settings', JSON.stringify(settings));
         } catch (e) {
             console.warn('Could not save CRT settings to localStorage');
         }
@@ -125,9 +135,35 @@ export default class CrtEffectManager {
     
     loadSettings() {
         try {
-            const savedEnabled = localStorage.getItem('crt-enabled');
-            if (savedEnabled !== null) {
-                this.crtEnabled = savedEnabled === 'true';
+            const savedSettings = localStorage.getItem('crt-settings');
+            
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                this.crtEnabled = settings.enabled !== undefined ? settings.enabled : true;
+                
+                // Apply saved opacity values if they exist
+                const root = document.documentElement;
+                
+                if (settings.scanlineOpacity !== undefined) {
+                    this.scanlineOpacity = settings.scanlineOpacity;
+                    root.style.setProperty('--crt-scanline-opacity', settings.scanlineOpacity);
+                }
+                
+                if (settings.flickerIntensity !== undefined) {
+                    this.flickerIntensity = settings.flickerIntensity;
+                    root.style.setProperty('--crt-flicker-opacity', settings.flickerIntensity);
+                }
+                
+                if (settings.vignetteOpacity !== undefined) {
+                    this.vignetteOpacity = settings.vignetteOpacity;
+                    root.style.setProperty('--crt-vignette-opacity', settings.vignetteOpacity);
+                }
+            } else {
+                // Check for legacy setting
+                const savedEnabled = localStorage.getItem('crt-enabled');
+                if (savedEnabled !== null) {
+                    this.crtEnabled = savedEnabled === 'true';
+                }
             }
         } catch (e) {
             console.warn('Could not load CRT settings from localStorage');

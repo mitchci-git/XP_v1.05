@@ -6,7 +6,6 @@
     user-select: none; /* Prevent text selection */
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE/Edge */
     -webkit-touch-callout: none; /* iOS Safari */
 }
 
@@ -41,7 +40,6 @@ body.image-viewer-container {
     justify-content: space-between; /* Use space-between to push groups to edges */
     align-items: center;
     flex-shrink: 0; /* Prevent toolbar from shrinking */
-    min-height: 42px; /* Ensure minimum height */
 }
 
 /* Toolbar groups with fixed dimensions */
@@ -107,14 +105,11 @@ body.image-viewer-container {
 
 /* Media query updates */
 @media (max-width: 450px) {
-    /* Only keep essential adjustments */
     .toolbar-group {
         padding: 0 2px;
     }
     
-    /* No size changes for buttons */
     .toolbar-button {
-        /* Keep standard sizing */
         margin: 0 1px;
     }
 }
@@ -127,7 +122,6 @@ body.image-viewer-container {
     background-color: #7B7B7B;
     overflow: hidden; /* Changed from 'auto' to 'hidden' to disable scrollbars completely */
     position: relative;
-    cursor: default; /* Ensure default cursor in image container */
     -webkit-user-drag: none; /* Prevent dragging */
 }
 
@@ -153,7 +147,6 @@ body.image-viewer-container {
     border-top: 1px solid #ACA899;
     padding: 4px 8px;
     height: 22px;
-    cursor: default; /* Ensure default cursor in status bar */
 }
 
 #image-info, #zoom-level {
@@ -189,39 +182,6 @@ body.image-viewer-container {
 /* Error message styling */
 .error-message {
     display: none; /* Hide error message completely */
-    visibility: hidden; /* Extra measure to ensure it's hidden */
-    opacity: 0; /* Make fully transparent */
-    position: absolute;
-    top: -9999px; /* Position far off-screen */
-    left: -9999px;
-    height: 0;
-    width: 0;
-    overflow: hidden;
-}
-
-.error-message h3,
-.error-message p,
-.error-message .path {
-    display: none; /* Hide all child elements too */
-}
-
-/* Remove loading indicator styles that are no longer needed */
-#loading-indicator {
-    display: none; /* Hide completely */
-}
-
-.loading-spinner {
-    display: none; /* Hide completely */
-}
-
-.loading-text {
-    display: none; /* Hide completely */
-}
-
-/* Keep the spin animation for other potential uses */
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
 }
 
 /* Windows XP Tooltip styling - copied from taskbar.css */

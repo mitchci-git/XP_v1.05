@@ -1,215 +1,281 @@
+/* Basic Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Tahoma', 'Arial', sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  color: #000;
+  font-size: 11px;
 }
 
-body {
-    font-family: "Tahoma", Arial, sans-serif;
-    font-size: 11px;
+/* Portfolio-specific container */
+.portfolio-viewer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
 }
 
-.window-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    overflow: hidden;
-    background-color: #fff;
+/* Address Bar - Matching My Computer style */
+.address-bar {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #FDFEFF 0%, #ECF3F7 100%);
+  border-bottom: 1px solid #7A9EB1;
+  padding: 4px 8px;
+  height: 25px;
 }
 
-/* Sidebar styling */
-.sidebar {
-    width: 160px !important;
-    min-width: 160px !important;
-    max-width: 160px !important;
-    background-color: #ECF4FD;
-    padding: 15px 5px 15px 15px;
-    border-right: 1px solid #D5E4F1;
+.navigation-buttons {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.nav-button {
+  width: 22px;
+  height: 22px;
+  background: #ECE9D8;
+  border: 1px solid #ACA899;
+  margin-right: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button:hover {
+  background: #FFF8B5;
+  border-color: #FFC83C;
+}
+
+.nav-button img {
+  width: 16px;
+  height: 16px;
+}
+
+.nav-button[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.nav-button[disabled]:hover {
+  background: #ECE9D8;
+  border: 1px solid #ACA899;
+}
+
+.address-text {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0 8px;
+}
+
+.address-label {
+  margin-right: 4px;
+}
+
+.address-input-container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #7F9DB9;
+  padding: 2px 6px;
+  flex-grow: 1;
+  height: 20px;
+}
+
+.address-input-container img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+/* Content area - two-column layout */
+.content-area {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.two-column-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+/* Left navigation panel - matching My Computer style */
+.projects-nav {
+  width: 160px;
+  background-color: #ECF4FD;
+  border-right: 1px solid #D5E4F1;
+  padding: 15px 5px 15px 15px;
+  overflow-y: auto;
+  flex-shrink: 0;
 }
 
 .sidebar-title {
-    font-weight: bold;
-    color: #003399;
-    padding: 5px 0;
-    margin-top: 5px;
-    font-size: 12px;
+  font-weight: bold;
+  color: #003399;
+  padding: 5px 0;
+  margin-top: 5px;
+  margin-bottom: 8px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #D5E4F1;
+  font-size: 11px;
 }
 
 .sidebar-list {
-    list-style-type: none;
-    margin-bottom: 10px;
-    padding-left: 5px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
 }
 
 .sidebar-list li {
-    padding: 4px 0;
+  margin-bottom: 4px;
+  padding-left: 3px;
 }
 
 .sidebar-list a {
-    color: #0066CC;
-    text-decoration: none;
-    padding-left: 18px;
-    background: url('../../assets/icons/windows/folder.png') no-repeat left center;
-    display: block;
+  display: flex;
+  align-items: center;
+  color: #0A246A;
+  text-decoration: none;
+  padding: 3px 5px;
+  border-radius: 2px;
+  font-size: 11px;
 }
 
 .sidebar-list a:hover {
-    color: #3399FF;
-    text-decoration: underline;
+  background-color: #E5F1FB;
+  color: #003399;
 }
 
-/* Content styling */
-.content {
-    flex: 1;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    max-width: calc(100% - 160px) !important;
+.sidebar-list a img {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
 }
 
-.address-bar {
-    height: 25px;
-    border: 1px solid #7A9EB1;
-    background: linear-gradient(to bottom, #FDFEFF 0%, #ECF3F7 100%);
-    display: flex;
-    align-items: center;
-    padding: 0 5px;
-    margin-bottom: 10px;
+/* Project details area - main content area */
+.project-details {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
 }
 
-.address-icon {
-    margin-right: 5px;
-}
-
-.folder-view {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 5px;
-    overflow-y: auto;
-}
-
+/* Empty folder message */
 .empty-folder {
-    color: #666;
-    font-style: italic;
-    padding: 20px;
-    width: 100%;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #999;
+  font-style: italic;
 }
 
-.folder-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-    padding: 5px;
-    width: 80px;
-    margin: 5px;
-}
-
-.folder-item:hover {
-    background-color: #E5F1FB;
-}
-
-.folder-item img {
-    width: 32px;
-    height: 32px;
-    margin-bottom: 5px;
-}
-
-.folder-item span {
-    font-size: 11px;
-    max-width: 100%;
-}
-
-/* Main folder styles are in iframe-apps.css, these are additional styles for thumbnails */
-
+/* Thumbnails view styling */
 .thumbnails-view {
-    display: grid !important;
-    grid-template-columns: repeat(3, 100px) !important;
-    grid-gap: 10px !important;
-    width: 100% !important;
-    padding: 10px !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  padding: 5px;
 }
-
-/* Remove the fade-in animation that's causing issues */
-/* @keyframes fade-in { ... } */
 
 .thumbnail-item {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    width: 100px !important;
-    cursor: default; /* Change from pointer/auto to explicitly use default cursor */
-    padding: 5px !important;
-    border: 1px solid transparent !important;
-    position: relative !important;
-    user-select: none;
-    margin: 0 !important;
-    flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  transition: background-color 0.1s;
+  position: relative;
 }
 
 /* Match hover effect with desktop icons */
 .thumbnail-item:hover:not(.selected) {
-    background-color: rgba(49, 106, 197, 0.1);
-    border: 1px solid rgba(49, 106, 197, 0.4);
+  background-color: #F0F8FF;
+  border: 1px solid #B8D6FB;
 }
 
 /* Match selection style with desktop icons */
 .thumbnail-item.selected {
-    background-color: rgba(49, 106, 197, 0.2);
-    border: 1px solid rgba(49, 106, 197, 0.8);
+  background-color: #E5F3FF;
+  border: 1px solid #70C0E7;
 }
 
 .thumbnail-item.selected:hover {
-    background-color: rgba(49, 106, 197, 0.3);
+  /* Removed redundant background-color declaration */
 }
-
-/* Remove filename highlight styling */
 
 /* Focus outline for accessibility */
 .thumbnail-item:focus {
-    outline: 1px dotted #000;
+  outline: none;
+  box-shadow: 0 0 3px #70C0E7;
 }
-
-/* Remove selection box related styles */
 
 .thumbnail-container {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 4px;
-    background-color: #f0f0f0; /* Matches empty placeholder color */
-    border: 1px solid #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2px;
-    overflow: hidden;
+  width: 100px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  overflow: hidden;
+  border: 1px solid #D5E4F1;
+  background-color: white;
 }
 
-/* Fix blank thumbnails by removing all opacity transitions */
 .thumbnail-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transition: none;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 1;
 }
 
 .filename {
-    font-size: 11px;
-    text-align: center;
-    word-wrap: break-word;
-    max-width: 90px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  text-align: center;
+  font-size: 11px;
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Status bar styling */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ECE9D8;
+  border-top: 1px solid #ACA899;
+  padding: 2px 8px;
+  height: 22px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .two-column-layout {
+    flex-direction: column;
+  }
+  
+  .projects-nav {
+    width: 100%;
+    max-height: 120px;
+    border-right: none;
+    border-bottom: 1px solid #D5E4F1;
+  }
 }

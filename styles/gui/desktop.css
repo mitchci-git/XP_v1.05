@@ -1,11 +1,8 @@
-/* Desktop styles */
 :root {
     --desktop-selection-color: rgba(49, 106, 197, 0.15);
     --desktop-selection-hover: rgba(49, 106, 197, 0.25);
     --taskbar-height: 30px;
-    --selection-border: 1px dotted #FFFFFF;
-    --icon-hover-bg: rgba(49, 106, 197, 0.12);
-    --icon-hover-border: rgba(255, 255, 255, 0.3);
+    --selection-border: 1px dashed #FFFFFF;
 }
 
 /* Main desktop container */
@@ -18,7 +15,7 @@
     position: relative;
 }
 
-/* Selection overlay for capturing mouse events */
+/* Selection overlay – sits behind everything, handles drag logic */
 .selection-overlay {
     position: absolute;
     top: 0;
@@ -26,27 +23,27 @@
     width: 100%;
     height: calc(100% - var(--taskbar-height));
     z-index: 0;
+    pointer-events: auto;
     cursor: default;
 }
 
-/* Selection box styling */
-#selection-box {
+/* Selection box (must live inside .selection-overlay) */
+.selection-box {
     position: absolute;
     border: var(--selection-border);
     background-color: var(--desktop-selection-color);
     border-radius: 3px;
-    z-index: 10;
     pointer-events: none;
+    z-index: 0;
 }
 
-/* Selection hover state styling */
+/* When desktop icons are hovered by box (no border) */
 .desktop-icon.hover-by-selection {
     background-color: var(--desktop-selection-hover);
-    border: var(--selection-border);
     border-radius: 3px;
 }
 
-/* Add hover effect for selected desktop icons */
+/* Hover effect for selected icons */
 .desktop-icon.selected:hover {
     background-color: rgba(49, 106, 197, 0.3);
 }
